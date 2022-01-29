@@ -1,0 +1,131 @@
+.hide{
+    display: none;
+}
+.flaticon-next,.flaticon-back{
+    display: none;
+}
+
+.work-hover-grid a {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.logo-header-inner img {
+    max-width: 150%;
+    max-height: 100%;
+}
+
+.btn, .panel, .form-control, .img-thumbnail, .panel-head ing, .dropdown-menu, .panel-group .panel, .nav-tabs > li > a, .modal-content, .navbar-toggle, .nav-pills > li > a, .pager li > a, .pager li > span, .well, .alert, .list-group-item:first-child, .list-group-item:last-child, .input-group-addon, .btn-group-divides > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group-divides > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child), .wt-booking-form .wt-extra-services li .wt-icon-box-lg, .wt-booking-form .wt-extra-services li.active .wt-icon-box-lg:after, .searchform input[type="text"], .searchform input[type="submit"], ol.comment-list li.comment .comment-body {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 5px;
+}
+
+.form-control {
+    border-color: #50aab2;;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    height: 35px;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 9px 12px 9px 10px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 1px;
+}
+
+.hover-effect-content {
+    width: 90%;
+}
+
+.line-filter-outer {
+    position: relative;
+    z-index: 1;
+    min-height: 380px;
+}
+
+.index-about3 {
+    padding: 10px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-item{
+    background: no-repeat scroll center scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    text-align: left;
+    
+}
+
+.carousel-item::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.1;
+}
+
+.carousel-caption{
+    bottom: 100px;
+   
+}
+
+.carousel-caption h1{
+    font-size: 50px;
+    font-weight: 700;
+    color: #ffffff;
+    
+}      
+.carousel-caption p{
+    font-size: 15px;
+    color: #ffffff;
+   
+}    
+
+ 
+
+.line-filter-outer {
+    position: relative;
+    z-index: 1;
+    min-height: 480px;
+}
+
+.counter-section-one {
+    background-image: url(../images/our_work/newone.jpg);
+    height: 460px;
+    position: relative;
+    background-size: cover;
+}
+
+.welcome-bg-block {
+    background-image: url(../images/slider/banner/latest-project-4.jpg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-right: 230px;
+    background-size: cover;
+}
+
+.stamp .stamp-secion-2 {
+    min-height: 300px;
+}
+
+.content-wrapper-content {
+    padding: 15px 0.5rem;
+}
+
+
