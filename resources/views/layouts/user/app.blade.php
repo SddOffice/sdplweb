@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/adminlte.min.css')}}">
   <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/colorbox.css')}}">
+  <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/slider.css')}}">
   <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/style.css')}}">
 
 
@@ -32,7 +33,7 @@
   <script src="{{asset('public/sdpl-assets/user/js/jquery.colorbox.js')}}" ></script>
   <script src="{{asset('public/sdpl-assets/user/js/jquery.colorbox-min.js')}}" ></script>
   <script src="{{asset('public/sdpl-assets/user/js/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-  {{-- <script src="{{asset('public/sdpl-assets/user/js/adminlte.js')}}"></script> --}}
+  <script src="{{asset('public/sdpl-assets/user/js/adminlte.js')}}"></script>
   <script src="{{asset('public/sdpl-assets/user/js/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
   <script src="{{asset('public/sdpl-assets/user/js/raphael/raphael.min.js')}}"></script>
   <script src="{{asset('public/sdpl-assets/user/js/jquery-mapael/jquery.mapael.min.js')}}"></script>

@@ -2,7 +2,7 @@
 @section('page_title', 'User-Dashboard')
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/slider.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/slider.css')}}"> --}}
     <style>
       
     </style>
@@ -66,8 +66,9 @@
                     <div class="col-md-4 offset-md-2">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <a href="{{url('user/residential')}}"><img src="{{asset('public/sdpl-assets/images/bunglows/bungalowrakeshagrawal.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="{{url('user/residential')}}"><h6 style="text-align: center; margin-top:10px; ">Residential</h6></a>
+                                <a href="{{url('user/residential/'. MyApp::RESIDENTIAL)}}"><img src="{{asset('public/sdpl-assets/images/bunglows/bungalowrakeshagrawal.jpg')}}" class="img-thumbnail" alt="..."></a>
+                                {{-- <a href="{{url('user/residential/'. MyApp::RESIDENTIAL)}}"><h6 style="text-align: center; margin-top:10px; ">Residential</h6></a> --}}
+                                <a href="{{url('user/residential',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><h6 style="text-align: center; margin-top:10px; ">Residential</h6></a>
                             </div>
                         </div>
                     </div>
@@ -100,14 +101,14 @@
                     <div class="carousel-container" >
                         @foreach ($project_prestigious_img as $item)
                             <div class="mySlides firstSlider animate">
-                                <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  alt="..." style="height: 350px;">
+                                <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  style="height: 350px;" >
                             </div>
                         @endforeach
                         
                         <a class="prev" onclick="prevSlide(1)">&#10094;</a>
                         <a class="next" onclick="nextSlide(1)">&#10095;</a>
                         
-                        <div class="dots-container">
+                        <div class="dots-container hide">
                             <span class="dots" onclick="currentSlide(1)"></span>
                             <span class="dots" onclick="currentSlide(2)"></span>
                             <span class="dots" onclick="currentSlide(3)"></span>
@@ -157,12 +158,8 @@
 @section('script')
     <script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
     <script>
-
-
         
         $(document).ready(function () {
-
-            
 
         // const data = { 
         //     name: 'example',
@@ -194,7 +191,7 @@
         // })
         // .catch((error) => {
         // console.error('Error:', error);
-        // });
+        });
     </script>
 @endsection
 

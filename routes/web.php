@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ResidentialController;
+use App\Http\Controllers\BungalowController;
 
 
 /*
@@ -73,7 +74,8 @@ Route::post('/login-auth', [UserController::class, 'loginAuth']);
 Route::group(['middleware'=>'user_auth'], function(){
     Route::get('user/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('user/residential', [ResidentialController::class, 'index']);
+    Route::get('user/residential/{project_group_id}', [ResidentialController::class, 'index']);
+    Route::get('user/bungalow', [ResidentialController::class, 'bungalow']);
 
     Route::get('user/get-state/{country_id}', [MasterController::class, 'getState']);
     Route::get('user/get-city/{state_id}', [MasterController::class, 'getCity']);

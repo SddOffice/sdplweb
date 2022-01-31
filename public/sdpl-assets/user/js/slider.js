@@ -1,11 +1,29 @@
+
+const slider_type = document.getElementsByClassName('carousel-container')[0].getAttribute('slider-type');
+
+//const carousel_count = document.querySelectorAll('.carousel-container').length;
+// let slideIndex = 0;
+// var arr = [];
+// for (let index = 0; index < carousel_count; index++) {
+//   var slider_name =  arr.push( document.getElementsByClassName('carousel-container')[index].getAttribute('slider-type') );
+//   var functionName = slider_name+"(" + slider_name +")";
+//   functionName;
+  
+// }
+
+
+
 let slideIndex = 0;
-firstSlider();
-secondSlider();
+if(slider_type == 1){
+  firstSlider();
+}else{
+  firstSlider();
+  secondSlider();
+}
 
 // Next-previous control
 function nextSlide(value) {
   slideIndex++;
-  //alert(value);
   if(value == 1){
     firstSlider();
     //timer = _timer; // reset timer
@@ -13,14 +31,12 @@ function nextSlide(value) {
     secondSlider();
   }
   timer = _timer; // reset timer
- 
 }
 
 function prevSlide(value) {
   slideIndex--;
   if(value == 1){
     firstSlider();
-    //timer = _timer;
   }else if(value == 2){
     secondSlider();
   }
@@ -30,15 +46,22 @@ function prevSlide(value) {
 // Thumbnail image controlls
 function currentSlide(n) {
   slideIndex = n - 1;
-  firstSlider();
-  secondSlider();
+  if(value == 1){
+    firstSlider();
+  }else if(value == 2){
+    secondSlider();
+  }
   timer = _timer;
 }
 
 function autonextSlide(){
   slideIndex++;
-  firstSlider();
-  secondSlider();
+  if(slider_type == 1){
+    firstSlider();
+  }else{
+    firstSlider();
+    secondSlider();
+  }
   timer = _timer;
 }
 
@@ -49,12 +72,10 @@ function firstSlider() {
   if (slideIndex > slides.length - 1) slideIndex = 0;
   if (slideIndex < 0) slideIndex = slides.length - 1;
   
-  // hide all slides
   slides.forEach((slide) => {
     slide.style.display = "none";
   });
   
-  // show one slide base on index number
   slides[slideIndex].style.display = "block";
   
   dots.forEach((dot) => {
@@ -65,18 +86,17 @@ function firstSlider() {
 }
 
 function secondSlider() {
+  console.log('second');
   let slides = document.querySelectorAll(".secondSlider");
   let dots = document.querySelectorAll(".dots");
   
   if (slideIndex > slides.length - 1) slideIndex = 0;
   if (slideIndex < 0) slideIndex = slides.length - 1;
   
-  // hide all slides
   slides.forEach((slide) => {
     slide.style.display = "none";
   });
   
-  // show one slide base on index number
   slides[slideIndex].style.display = "block";
   
   dots.forEach((dot) => {
@@ -84,17 +104,15 @@ function secondSlider() {
   });
 }
 
-// autoplay slides --------
-let timer = 7; // sec
+let timer = 7; 
 const _timer = timer;
 
-// this function runs every 1 second
 setInterval(() => {
   timer--;
 
   if (timer < 1) {
     autonextSlide();
-    timer = _timer; // reset timer
+    timer = _timer; 
   }
-}, 1000); // 1sec
+}, 1000); 
 

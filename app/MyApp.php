@@ -12,4 +12,13 @@ class MyApp {
     const MRS = "Mrs";
     const MS = "Ms";
     const M_S = "M/S";
+
+    const MIX_USE = 1;
+    const MALL_MULTIPLESER = 2;
+    const HOSPITAL = 3;
+    const HOSPITALITY = 4;
+    const RESIDENTIAL = 5;
+    const COMMERCIAL_SHOWROOM_OFFICE = 7;
+
+    const FIRST_SLIDER = 1;
 }
