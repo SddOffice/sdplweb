@@ -253,6 +253,7 @@
 
     <div class="row ">
       <div class="offset-md-11 col-md-1">
-        <button type="button" id="bungalowPropertyBtn" class="btn btn-block btn-primary btn-flat btn-sm mt-2" >Bungalow Property </button>
+        <button type="button" id="bungalowPropertyBtn" class="btn btn-block btn-primary btn-flat btn-sm mt-2" >Bungalow Property</button>
       </div>
     </div> 
+

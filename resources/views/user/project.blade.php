@@ -1,13 +1,6 @@
 @extends('layouts.user.app')
 @section('page_title', 'Projects')
 
-@section('style')
-    <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/slider.css')}}">
-    <style>
-        
-     
-    </style>
-@endsection
 
 @section('content')
 
@@ -131,81 +124,300 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<button type="button" id="createProject" class="btn btn-primary btn-flat btn-sm mt-2">Create Project</button>
 	</div>
-</div>
+</div> 
+
 @include('user.modal-layouts.bungalow_detail_modal')
 
 
 
-{{-- @foreach ($project_prestigious_img as $item)
-    
-    <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}" class="card-img-top img-thumbnail " alt="...">
-@endforeach --}}
+<div class="modal fade" id="bungalowEntranceModel" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+		    <div class="modal-header">
+			    <h5 class="modal-title" id="exampleModalLabel">Bungalow Entrance</h5>
+			    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		    </div>
+		    <div class="modal-body">
+			    <form id="bungalowEntranceForm">
+				    @csrf
+					<div id="bungalow_entrance_err"></div>
+					<form class="">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <label class="form-label">Entrance Gate</label>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input ck_south_road" type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">One gate</label>
+                                    </div>           
+                                    <div class="form-check">
+                                        <input class="form-check-input ck_south_road" type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">Two gate</label>
+                                    </div>            
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <label class="form-label">Security Kiosq</label>
+                                </div>
+                                <div class="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input ck_south_road" type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">With Sleeping Space</label>
+                                    </div>           
+                                    <div class="form-check">
+                                        <input class="form-check-input ck_south_road" type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">Without Sleeping Space</label>
+                                    </div>            
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="1000">
+                                        <img src="{{asset('public/sdpl-assets/images/slider/slide3.jpg')}}" class="d-block w-100" alt="...">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img src="{{asset('public/sdpl-assets/images/slider/slide3.jpg')}}" class="d-block w-100" alt="...">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img src="{{asset('public/sdpl-assets/images/slider/slide3.jpg')}}" class="d-block w-100" alt="...">
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                            
+				        
+				        <div class="row mt-3">
+					        <div class="col-md-4">
+                                <div class="input-group mb-3 input-group-sm">
+                                    <span class="" style="color:rgb(197, 9, 9)">*</span>
+                                    <input type="text" class="form-control form-control-sm" id=""  name="" placeholder="Width" required>
+                                    <span class="input-group-text" id="basic-addon2">SqFt</span>
+                                </div>
+					        </div>
+					        <div class="col-md-4">
+						        <div class="input-group mb-3 input-group-sm">
+                                    <span class="" style="color:rgb(197, 9, 9)">*</span>
+                                    <input type="text" class="form-control form-control-sm"  id=""  name="" placeholder="Length" required >
+                                    <span class="input-group-text" id="basic-addon2">SqFt</span>
+                                </div>
+					        </div>
+                            <div class="col-md-4">
+                                <div class="input-group mb-3 input-group-sm"><span class="requiredshow" style="color:rgb(197, 9, 9)">*</span>
+                                    <input type="text" class="form-control form-control-sm" id=""  name="" placeholder="Digonal-1" required >
+                                    <span class="input-group-text input-group-text-sm" id="basic-addon2">SqFt</span>
+                                </div>
+                            </div>
+				        </div> 
+				        <div class="row">
+					        <div class="col-md-4 mt-4">
+                                <div class="input-group mb-3 input-group-sm"><span class="requiredshow" style="color:rgb(197, 9, 9)">*</span>
+                                    <input type="text" class="form-control form-control-sm"  id="" name="" placeholder="Diagonal-2" required>
+                                    <span class="input-group-text input-group-text-sm" id="basic-addon2">SqFt</span>
+                                </div>
+					        </div>
+					        <div class="col-md-4">
+						        <small>Hand Sketch Image</small>
+						        <div class="input-group input-group-sm">
+						            <input type="file" class="form-control form-control-sm" id=""  name="" aria-describedby="" aria-label="Upload">
+						            <button class="btn btn-outline-secondary btn-sm" type="button" id="button" name="button">Button</button>
+					            </div>
+					        </div>
+					        <div class="col-4  mt-4">
+						        <div class="form-check">
+						            <input class="form-check-input" type="checkbox" id="" name="">
+						            <label class="form-check-label">Appoint a surveyor</label>
+                                </div>
+				            </div>
+                        </div>  
+					    <div class="row mb-2">
+				            <div class="row">
+						        <label class="form-label">Plot border</label>
+					        </div>	
+					        <div class="row">
+						        <div class="col-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">East<font color="red">*</font></label>
+                                    </div>
+						        </div>
+                                <div class="col-1 pl-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input " type="radio" id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">West<font color="red">*</font></label>
+                                    </div>
+                                </div>
+					            <div class="col-3 pl-5">
+                                    <div class="form-check">
+                                        <input class="form-check-input  ck_east_road " type="radio"  id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">East road</label>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm input_east_show" id=""  name="" placeholder="Road Width"  style="width:30%;">
+                                        <select class="form-select form-select-sm input_east_show" style="width:40%;">
+                                            <option value="2">ft</option>
+                                            <option value="3">mtr</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3  pl-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input  ck_west_road" type="radio"  id="" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">West road</label>
+                                    </div>
+						        </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm input_west_show" id=""  name="" placeholder="Road Width"  style="width:30%;">
+                                            <select class="form-select form-select-sm input_west_show"  style="width:40%;">
+                                                <option value="2">ft</option>
+                                                <option value="3">mtr</option>
+                                            </select>
+                                        </div>
+                                    </div>
+					            </div>
+					            <div class="row">
+						            <div class="col-1">
+                                <div class="form-check">
+                                <input class="form-check-input " type="radio" id="" name="" style="border-radius:20%;">
+                                    <label class="form-check-label">North<font color="red">*</font></label>
+                            </div>
+						</div>
+                        <div class="col-1 pl-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="" name="" style="border-radius:20%;">
+                                <label class="form-check-label">South<font color="red">*</font></label>
+                            </div>
+                        </div>
+                        <div class="col-3 pl-5">
+                            <div class="form-check">
+                                <input class="form-check-input ck_north_road" type="radio" id="" name="" style="border-radius:20%;">
+                                <label class="form-check-label ">North road</label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input_north_show" id=""  name="" placeholder="Road Width"  style="width:30%;">
+                                <select class="form-select form-select-sm input_north_show"  style="width:40%;">
+                                    <option value="2">ft</option>
+                                    <option value="3">mtr</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3 pl-4">
+                            <div class="form-check">
+                                <input class="form-check-input ck_south_road" type="radio" id="" name="" style="border-radius:20%;">
+                                <label class="form-check-label">South road</label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input_south_show"  id="up"  name="up" placeholder="Road Width"  style="width:30%;">
+                                <select class="form-select form-select-sm input_south_show"  style="width:40%;">
+                                    <option value="2">ft</option>
+                                    <option value="3">mtr</option>
+                                </select>
+                            </div>
+                        </div>
+					</div>
+					<div class="row  mt-2 mb-2">
+					    <div class="col-10 ml-4">
+						    <input class="form-check-input" type="checkbox" id="" name="">
+						    <label><b>Plot Is Not oriented perpendicularly With North</b></label>
+					    </div>
+                    </div>
+					<div class="row">
+						<div class="col-md-5">
+						    <small>Upload a hand sketch image With orientation</small>
+						</div>
+					    <div class="col-md-6">
+							<small>Down/Up of ground from abuting front</small>
+						</div>
+				    </div>	
+				    <div class="row">
+				        <div class="col-md-4 mb-3">
+						    <div class="input-group input-group-sm">
+						        <input type="file" class="form-control form-control-sm" id="" name="">
+							    <button class="btn btn-outline-secondary btn-sm" type="button" id="" name="">Button</button>
+						    </div>
+						</div>
+						<div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" id=""  name="" placeholder="Up"  style="width:60%;">
+                                <select class="form-select form-select-sm">
+                                    <option value="2">ft</option>
+                                    <option value="3">mtr</option>
+                                </select>
+                            </div>
+						</div>
+						<div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" id="" name="" placeholder="Down" style="width:60%;">
+                                    <select class="form-select form-select-sm">
+                                        <option value="2">ft</option>
+                                        <option value="3">mtr</option>
+                                    </select>
+                                </div>
+						    </div>
+					    </div> 
+					    <div class="row">
+						    <div class="col-3">
+						        <div class="form-check">
+						            <input class="form-check-input form-check-input-sm" type="checkbox" id="" name="">
+						            <label class="form-check-label form-check-label-sm">Almost On same</label></div>
+					            </div>
+					            <div class="col-3">
+					                <select id="" name="" class="form-select form-select-sm">
+						                <option selected>Select Floors</option>
+						                <option>1 st floor</option>
+                                        <option>2 st floor</option>
+                                        <option>3 st floor</option>
+                                        <option>other</option>
+						            </select>
+					            </div>
+					            <div class="col-1">
+						            <label for="Floor" class="form-label">Vastu</label>
+					            </div>
+                                <div class="col-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="" style="border-radius:20%;">
+                                        <label class="form-check-label">Moderate</label>
+                                    </div>
+					            </div>
+					            <div class="col-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio"  name="" style="border-radius:20%;">
+                                        <label class="form-check-label">Consult Expert</label>
+                                    </div>
+					            </div>
+					        </div>
+				        </div>
+			        </div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+						<button type="button" id="saveBungalowEntranceBtn" class="btn btn-primary btn-sm ">Save Bungalow Entrance</button>
+					    <button type="button" id="updateBungalowEntranceBtn" class="btn btn-primary btn-sm hide">Update Bungalow Entrance</button>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+<div>
 
-<div class="row">
-    <div class="col-md-4">
-
-        <div class="carousel-container">
-
-            @foreach ($project_prestigious_img as $item)
-                <div class="mySlides firstSlider animate">
-                    <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  alt="...">
-                </div>
-            @endforeach
-            
-            <a class="prev" onclick="prevSlide(1)">&#10094;</a>
-            <a class="next" onclick="nextSlide(1)">&#10095;</a>
-            
-            <div class="dots-container">
-                <span class="dots" onclick="currentSlide(1)"></span>
-                <span class="dots" onclick="currentSlide(2)"></span>
-                <span class="dots" onclick="currentSlide(3)"></span>
-                <span class="dots" onclick="currentSlide(4)"></span>
-                <span class="dots" onclick="currentSlide(5)"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <h1>second</h1>
-        <div class="carousel-container">
-
-            @foreach ($project_recent_project_img as $item)
-                <div class="mySlides secondSlider animate">
-                    <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  alt="...">
-                </div>
-            @endforeach
-
-            <a class="prev" onclick="prevSlide(2)">&#10094;</a>
-            <a class="next" onclick="nextSlide(2)">&#10095;</a>
-            
-            <div class="dots-container">
-                <span class="dots" onclick="currentSlide(1)"></span>
-                <span class="dots" onclick="currentSlide(2)"></span>
-                <span class="dots" onclick="currentSlide(3)"></span>
-                <span class="dots" onclick="currentSlide(4)"></span>
-                <span class="dots" onclick="currentSlide(5)"></span>
-            </div>
-            
-        </div>
-        
-    </div>
-
-    <div class="col-md-6">
-
-        
-
-    </div>
+<div class="row ">
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<button type="button" id="bungalowEntranceModel" class="btn btn-primary btn-flat btn-sm mt-2">Bungalow Entrance</button>
+	</div>
+</div> 
 
 
-</div>
-
-  
-
-
-
-
-
-{{-- {{$count = ""}}
+{{$count = ""}}
 @foreach ($projects as $key => $list)
 <div class="row mt-2">
     <div class="col-md-9">
@@ -371,17 +583,12 @@
     </div>
 </div>
 
-@endforeach --}}
+@endforeach 
 
 @endsection
     
 @section('script')
-    <script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
     <script>
-
-
-
-
 
         $(document).ready(function () {
 
@@ -397,6 +604,19 @@
                 $('.show_design').css('display','none');
                 $('#saveProjectBtn').removeClass('hide');
                 $('#updateProjectBtn').addClass('hide');
+            });
+
+
+            $(document).on('click','#bungalowEntranceModel', function (e) {
+                e.preventDefault();
+                
+                $('#bungalowEntranceModel').modal('show');
+                $('#bungalow_entrance_err').html('');
+                $('#bungalow_entrance_err').removeClass('alert alert-danger');
+                $("#bungalowEntranceForm").trigger("reset"); 
+                $('.show_design').css('display','none');
+                $('#saveBungalowEntranceBtn').removeClass('hide');
+                $('#updateBungalowEntranceBtn').addClass('hide');
             });
 
             
@@ -510,20 +730,9 @@
 
         });
 
-
-
-        
-
-            
-
-
-   
-	
-		
-		
 		
 </script>
 
 
 
-@endsection
+@endsection 

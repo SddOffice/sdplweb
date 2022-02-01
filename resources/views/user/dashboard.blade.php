@@ -18,18 +18,22 @@
             <div class="offset-md-2 col-md-8 ">
                 <div class="row">
                     <div class="col-md-4 offset-md-2">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/gopikashraddha.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Mix Use Buildings</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::MIX_USE)])}}"><img src="{{asset('public/sdpl-assets/images/project-group/mix-use.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::MIX_USE)])}}">Mix Use Buildings</a> 
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/krishnajyoti.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Mall/Multiplxer</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::MALL_MULTIPLESER)])}}"><img src="{{asset('public/sdpl-assets/images/project-group/mall.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::MALL_MULTIPLESER)])}}">Mall/Multiplxer</a> 
                             </div>
                         </div>
                     </div> 
@@ -37,10 +41,12 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/legendcityhospital.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Hospitals</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITAL)])}}"><img src="{{asset('public/sdpl-assets/images/project-group/hospital.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITAL)])}}">Hospitals</a> 
                             </div>
                         </div>
                     </div>
@@ -53,10 +59,12 @@
                         </div> --}}
                     </div> 
                     <div class="col-md-4">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/shawnelizey.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Hospitality</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITALITY) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/hospitality.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITALITY) ])}}">Hospitality</a> 
                             </div>
                         </div>
                     </div>   
@@ -64,19 +72,22 @@
 
                 <div class="row">
                     <div class="col-md-4 offset-md-2">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="{{url('user/residential/'. MyApp::RESIDENTIAL)}}"><img src="{{asset('public/sdpl-assets/images/bunglows/bungalowrakeshagrawal.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                {{-- <a href="{{url('user/residential/'. MyApp::RESIDENTIAL)}}"><h6 style="text-align: center; margin-top:10px; ">Residential</h6></a> --}}
-                                <a href="{{url('user/residential',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><h6 style="text-align: center; margin-top:10px; ">Residential</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/residential.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}">Residential</a> 
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card shadow-sm">
+                        <div class="card text-center">
                             <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/gopikaseoni.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Comm. Show./Offices</h6></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::COMMERCIAL_SHOWROOM_OFFICE) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/commercial.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::COMMERCIAL_SHOWROOM_OFFICE) ])}}">Comm. Show./Offices</a> 
                             </div>
                         </div>
                     </div>

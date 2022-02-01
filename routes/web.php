@@ -8,7 +8,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ResidentialController;
 use App\Http\Controllers\BungalowController;
 
 
@@ -74,9 +73,6 @@ Route::post('/login-auth', [UserController::class, 'loginAuth']);
 Route::group(['middleware'=>'user_auth'], function(){
     Route::get('user/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('user/residential/{project_group_id}', [ResidentialController::class, 'index']);
-    Route::get('user/bungalow', [ResidentialController::class, 'bungalow']);
-
     Route::get('user/get-state/{country_id}', [MasterController::class, 'getState']);
     Route::get('user/get-city/{state_id}', [MasterController::class, 'getCity']);
     
@@ -84,6 +80,8 @@ Route::group(['middleware'=>'user_auth'], function(){
     Route::get('user/profile', [ProfileController::class, 'index']);
     Route::get('/user/edit-user-detail/{user_id}', [ProfileController::class, 'editUserDetail']);
     
+    Route::get('user/project-types/{project_group_id}', [ProjectController::class, 'projectTypes']);
+    Route::get('user/project-type-detail/{project_type_id}', [ProjectController::class, 'projectTypeDetail']);
     //project route here
     Route::get('user/project', [ProjectController::class, 'index']);
     Route::get('user/get-project-type/{project_group_id}', [MasterController::class, 'getProjectType']);

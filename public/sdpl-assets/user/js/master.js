@@ -127,7 +127,6 @@ function editProject(project_id) {
             });
 
             $('#updateProjectBtn').val(response.project.id);
-            alert( "{{MyApp::SITE_NAME}}" );
         }
     });
 }

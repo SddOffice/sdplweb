@@ -14,6 +14,7 @@ use App\Models\Project;
 use App\Models\ProjectType;
 use App\Models\ProjectDesign;
 
+use Crypt;
 use App\MyApp;
 
 class ProjectController extends Controller
@@ -61,32 +62,40 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function editProject($project_id)
+    public function projectTypes($project_group_id)
     {
-        // $project = Project::join('project_groups', 'projects.project_group_id','=','project_groups.id')
-        //                 ->join('project_types', 'projects.project_type_id','=','project_types.id')
-        //                 ->join('countries', 'projects.country','=','countries.id')
-        //                 ->join('states', 'projects.state' , '=' , 'states.id')
-        //                 ->join('cities', 'projects.city' , '=' , 'cities.id')
-        //                 ->where('projects.id', $project_id)
-        //                 ->get(['projects.*', 'project_groups.project_group', 'project_types.project_type', 'countries.country_name', 'states.state_name', 'cities.city_name']);
-        
-    $project = Project::find($project_id);
-    $project_type = ProjectType::where(['project_group_id'=>$project->project_group_id])->get();
-    $states = State::where(['country_id'=>$project->country])->get();
-    $cities = City::where(['state_id'=>$project->state])->get();
+        $project_group_id = Crypt::decrypt($project_group_id);
+        $project_type = Http::get(MyApp::API_URL.'project-type/'.$project_group_id);
+ 
+        $residential_img = Http::get(MyApp::API_URL.'get-residential-image');
+        return view('user.project_type',[
+            'project_type'=>$project_type['project_type'],
+            'residential_prestigious_img'=>$residential_img['residential_prestigious_img'],
+            'residential_recent_project_img'=>$residential_img['residential_recent_project_img']
+        ]);
+    }
 
-    $designs = ProjectDesign::where(['project_id'=>$project->id])->get(['design_id']);
+    public function projectTypeDetail($project_type_id)
+    {
+        $project_type_id = Crypt::decrypt($project_type_id);
+        $project_type = ProjectType::where(['id'=>$project_type_id])->first('project_type');
+        $gallery = Http::get(MyApp::API_URL.'get-gallery/'.$project_type_id);
+        return view('user.project_type_detail',[
+            'project_type'=>$project_type['project_type'],
+            'gallery'=>$gallery['gallery']
+        ]);
+    }
 
-    // echo "<pre>";
-    // print_r($design);
+    public function editProject($project_id)
+    {  
+        $project = Project::find($project_id);
+        $project_type = ProjectType::where(['project_group_id'=>$project->project_group_id])->get();
+        $states = State::where(['country_id'=>$project->country])->get();
+        $cities = City::where(['state_id'=>$project->state])->get();
 
-    // $design_category = Design::join('system_categories','designs.category_id','=','system_categories.id')
-    //                 ->select('designs.category_id','system_categories.name')
-    //                 ->groupBy('designs.category_id','system_categories.name')
-    //                 ->get();
+        $designs = ProjectDesign::where(['project_id'=>$project->id])->get(['design_id']);
 
-    return response()->json([
+        return response()->json([
             'status'=>200,
             'project'=>$project,
             'project_type'=>$project_type,
