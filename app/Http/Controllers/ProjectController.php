@@ -46,10 +46,6 @@ class ProjectController extends Controller
             $design_type_name[] = getDesignType($project->design_type);
         }
 
-        // echo "<pre>";
-        // print_r($project_img['project_prestigious_img']);
-        // print_r($project_img['project_recent_project_img']);
-        // dd();
         return view('user.project', [
             'countries'=>$countries,
             'project_group'=>$project_group,
@@ -75,13 +71,29 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function projectTypeDetail($project_type_id)
+    public function projectTypeDetail(Request $req)
     {
-        $project_type_id = Crypt::decrypt($project_type_id);
-        $project_type = ProjectType::where(['id'=>$project_type_id])->first('project_type');
+        
+        $project_type_id = Crypt::decrypt($req->input('project_type_id'));
+        //$project_type_id = $req->input('project_type_id');
+        $project_group = ProjectGroup::all();
+        $countries = Country::all();
+        $design_type = DesignType::all();
+        $design_list = array();
+        foreach ($design_type as $key => $value)
+        {
+            $design_list[] = Design::where(['design_type_id'=>$value->id])->get();
+        }
+        
+
+        $project_type_name = ProjectType::where(['id'=>$project_type_id])->first('project_type');
         $gallery = Http::get(MyApp::API_URL.'get-gallery/'.$project_type_id);
         return view('user.project_type_detail',[
-            'project_type'=>$project_type['project_type'],
+            'countries'=>$countries,
+            'project_group'=>$project_group,
+            'design_type'=>$design_type,
+            'design_list'=>$design_list,
+            'project_type_name'=>$project_type_name['project_type'],
             'gallery'=>$gallery['gallery']
         ]);
     }

@@ -45,23 +45,25 @@
                     </ul>
                 </div>
             </div>
+            {{-- <button class="btn btn-danger">Start Services <br> With <br> SDPLweb</button> --}}
             <div class="wt-header-right ">
-                <div class="bg-primary wt-header-right-child">
-                    <!-- ETRA Nav -->
-                    <div class="extra-nav">
+                <div class="bg-primary text-center">
+                    
+                    {{-- <div class="extra-nav">
                         <div class="extra-cell">
                             <a href="#search" class="site-search-btn"><i class="bi bi-search"></i></a>
+                            
                         </div>
                      </div>                                 
-                    <!-- ETRA Nav -->
                     <div class="extra-nav">
                         <div class="extra-cell">
                             <div class="right-arrow-btn">
                                 <button type="button" class="btn-open contact-slide-show text-white notification-animate"><i class="bi bi-chevron-double-left"></i></button>
                             </div>                                         
                         </div>
-                     </div>
-                 </div>                                 
+                    </div> --}}
+
+                </div>                                 
            </div>  
             <!-- Contact Nav -->                            
             <div class="contact-slide-hide"> 

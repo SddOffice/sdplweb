@@ -74,10 +74,10 @@
                     <div class="col-md-4 offset-md-2">
                         <div class="card text-center">
                             <div class="card-body">
-                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/residential.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                                <a href="{{url('/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/residential.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
                             </div>
                             <div class="card-footer text-muted">
-                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}">Residential</a> 
+                                <a href="{{url('/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}">Residential</a> 
                             </div>
                         </div>
                     </div>

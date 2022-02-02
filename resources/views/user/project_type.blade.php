@@ -12,8 +12,14 @@
                             <a href="#"><img src="{{MyApp::MAIN_URL.'public/storage/' .$type['img_path']}}" class="img-thumbnail" alt="{{$type['project_type']}}" ></a>
                         </div>
                         {{-- <div class="card-footer text-muted"><a href="{{url('user/'. str_replace(' ', '-', $type['project_type']))}}">{{ucwords($type['project_type'])}}</a> </div> --}}
-                        <div class="card-footer text-muted"><a href="{{url('user/project-type-detail',['project_type_id' => Crypt::encrypt($type['id']) ])}}">{{ucwords($type['project_type'])}}</a> </div>
-                        {{-- <div class="card-footer text-muted"><a href="{{url('user/project-type-detail',['project_type_id' => $type['id'] ])}}">{{ucwords($type['project_type'])}}</a> </div> --}}
+                        {{-- <div class="card-footer text-muted"><a href="{{url('user/project-type-detail',['project_type_id' => Crypt::encrypt($type['id']) ])}}">{{ucwords($type['project_type'])}}</a> </div> --}}
+                        {{-- <div class="card-footer text-muted"><a href="{{url('user/project-type-detail/'. Crypt::encrypt($type['id']) )}}">{{ucwords($type['project_type'])}}</a> </div> --}}
+                        <form method="POST" action="{{ url('/project-type-detail') }}">
+                            <input type="hidden" name="project_type_id" value="{{ Crypt::encrypt($type['id']) }}">  
+                            @csrf
+                            <button type="submit" class="btn text-blue">{{ucwords($type['project_type'])}}</button>
+                        </form>
+
                     </div>
                 </div>
             @endforeach

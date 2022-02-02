@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="@yield('keywords')" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
-    <meta name="description" content="" />
+    <meta name="robots" content="index" />    
+    <meta name="description" content="@yield('description')" />
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/sdpl-assets/images/logo/sdpl-favicon-icon.jpg')}}" />
     <title>@yield('page_title')</title>
@@ -94,6 +94,12 @@
             <div class="cssload-box-loading"></div>
         </div>
     </div> --}}
+    <a href="{{ url('/dashboard') }}" class="float text-blue">
+        Start Services <br> With <br> SDPL<small>web</small> 
+    </a>
+
+    {{-- <div class="bg-text"> <a href="#"> Start Services <br> With <br> SDPL<small>web</small> </a> </div> --}}
+
     
 </body>
 </html>

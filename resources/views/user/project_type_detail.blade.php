@@ -1,16 +1,20 @@
 @extends('layouts.user.app')
 @php
-    $project_type = ucwords($project_type);
+    $project_type_name = ucwords($project_type_name);
 @endphp
-@section('page_title', $project_type )
+@section('page_title', $project_type_name )
 
 
 @section('content')
+
+    @include('user.modal-layouts.bungalow_detail_modal')
+
     <div class="row ">
-    	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    		<button type="button" id="createProject" class="btn btn-primary btn-flat btn-sm mt-2">Create Project</button>
-    	</div>
-    </div> 
+	    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		    <button type="button" id="createProject" class="btn btn-primary btn-flat btn-sm mt-2">Create Project</button>
+	    </div>
+    </div>  
+     
 
     <div class="row py-2">        
         <div class="col-md-12">
@@ -64,7 +68,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                <a href=""><h4>Gallery</h4></a>
+                                <a href="#"><h4>Gallery</h4></a>
                                 </div>
                                 <div class="card-body">
                                     <a href=""><img src="{{asset('public/sdpl-assets/images/icons/gallery.png')}}" class="card-img-top" alt="..."></a>
@@ -74,7 +78,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                <a href=""><h4>Sample Designs</h4></a>
+                                <a href="#"><h4>Sample Designs</h4></a>
                                 </div>
                                 <div class="card-body">
                                     <img src="{{asset('public/sdpl-assets/images/icons/pdf.png')}}" class="card-img-top" alt="...">
@@ -84,7 +88,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                <a href=""><h4>Interested Next</h4></a>
+                                <a href="#"><h4>Interested Next</h4></a>
                                 </div>
                                 <div class="card-body">
                                     <img src="{{asset('public/sdpl-assets/images/icons/next.png')}}" class="card-img-top" alt="...">
@@ -100,8 +104,18 @@
     
 @endsection
 
-@section('script')
-<script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
-@endsection
 
+@section('script')
+    <script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
+    <script src="{{asset('public/sdpl-assets/user/js/modal/residential.js')}}" ></script>
+
+    <script>
+        $(document).ready(function () {
+                
+        });
+
+    </script>
+
+
+@endsection
 

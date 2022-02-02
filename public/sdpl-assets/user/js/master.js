@@ -1,5 +1,16 @@
 
- function getProjectType(project_group_id){
+// function getProjectType(project_group_id){
+//     fetch(`get-project-type/${project_group_id}`)
+//     .then(response => response.json())
+//     .then(response => {
+//         if(response.status == 200){
+//             $('#project_type_id').html("");
+//             $('#project_type_id').html(response.html);
+//         }
+//     });
+// }
+
+function getProjectType(project_group_id){
     fetch(`get-project-type/${project_group_id}`)
     .then(response => response.json())
     .then(response => {
@@ -7,7 +18,7 @@
             $('#project_type_id').html("");
             $('#project_type_id').html(response.html);
         }
-    });
+    });   
 }
 
 function getState(country_id) {

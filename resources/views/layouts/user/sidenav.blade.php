@@ -5,19 +5,25 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="dropdown bg-light  pt-1 pb-1 ">
-            <button class="btn btn-secondry btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{asset('public/sdpl-assets/images/logo/user_active.png')}}" class="rounded-circle" alt="..."> Welcome - {{ucwords(session('USER_NAME'))}}
-            </button>
-            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton2">
-                <li class="nav-item">
-                    <a class="dropdown-item active" aria-current="page" href="{{url('user/logout')}}">Logout</a>
-                </li>
-            </ul>
-        </div>
+        
+        @if (session('USER_LOGIN') == true)
+            <div class="dropdown bg-light  pt-1 pb-1 ">
+                <button class="btn btn-secondry btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{asset('public/sdpl-assets/images/logo/user_active.png')}}" class="rounded-circle" alt="..."> Welcome - {{ucwords(session('USER_NAME'))}}
+                </button>
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton2">
+                    <li class="nav-item">
+                        <a class="dropdown-item active" aria-current="page" href="{{url('user/logout')}}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            
+        @else
+            
+        @endif
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        {{-- <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -26,17 +32,45 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item menu-open">
+                {{-- <li class="nav-item menu-open">
                     <a href="{{url('/user/dashboard')}}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p>Dashboard </p>
                     </a>
-                </li>
+                </li> --}}
+
+                @if (session('USER_LOGIN') == true)
+                    <li class="nav-item menu-open">
+                        <a href="{{url('/user/dashboard')}}" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard </p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{url('/user/profile')}}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item inline">
+                        <a href="{{url('/user/project')}}" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Project</p>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item menu-open">
+                        <a href="{{url('/dashboard')}}" class="nav-link active">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard </p>
+                        </a>
+                    </li>
+                @endif
         
                 {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -62,18 +96,7 @@
                     </ul>
                 </li> --}}
             
-                <li class="nav-item ">
-                    <a href="{{url('/user/profile')}}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li class="nav-item inline">
-                    <a href="{{url('/user/project')}}" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
-                        <p>Project</p>
-                    </a>
-                </li>
+                
             </ul>
         </nav>
         <!-- /.sidebar-menu --> 
