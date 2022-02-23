@@ -10,6 +10,8 @@
 //     });
 // }
 
+
+//Create Projects
 function getProjectType(project_group_id){
     fetch(`get-project-type/${project_group_id}`)
     .then(response => response.json())
@@ -39,9 +41,9 @@ function getCity(state_id) {
     });
 }
 
-//save project
-function saveProject(url){
 
+//Save ProjectS
+function saveProject(url){
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -78,11 +80,13 @@ function saveProject(url){
     });
 }
 
+
+//Edit Projects
 function editProject(project_id) {
     fetch(`edit-project/${project_id}`)
     .then(response => response.json())
     .then(response => {
-        //console.log( response);
+        console.log( response);
         if(response.status == 200){ 
             
             $('#createProjectModal').modal('show');
@@ -123,21 +127,361 @@ function editProject(project_id) {
             $('#city').val(response.project.city);
             $('#address').val(response.project.address);
 
-            var design_type = response.project.design_type.split(',');
-            $('.show_design').css('display','none');
-            $.each(design_type, function (key, design_type_id) { 
-                $('#design_type_'+design_type_id).prop('checked',true);
-                $('#show_design_'+design_type_id).show();
-            });
+            // var design_type = response.project.design_type.split(',');
+            // $('.show_design').css('display','none');
+            // $.each(design_type, function (key, design_type_id) { 
+            //     $('#design_type_'+design_type_id).prop('checked',true);
+            //     $('#show_design_'+design_type_id).show();
+            // });
             
-            $.each(response.designs, function (indexInArray, design) { 
-                var design_id = design.design_id.split(',');
-                $.each(design_id, function (indexInArray, value) { 
-                    $('#design_id_'+value).prop('checked',true);
-                });
-            });
+            // $.each(response.designs, function (indexInArray, design) { 
+            //     var design_id = design.design_id.split(',');
+            //     $.each(design_id, function (indexInArray, value) { 
+            //         $('#design_id_'+value).prop('checked',true);
+            //     });
+            // });
+
+            $("input:radio[name='plot_type'][value='"+response.project.plot_type+"']").prop("checked", true);
+
+            $('#plot_size').val(response.project.plot_size);
+            $('#plot_length').val(response.project.plot_length);
+            $('#plot_width').val(response.project.plot_width);
+            $('#diagonal_1').val(response.project.diagonal_1);
+            $('#diagonal_2').val(response.project.diagonal_2);
+            
+            if(response.project.apmt > 0){
+                $('#apmt').prop("checked", true);
+            }
+
+            $("input:radio[name='east_property'][value='"+response.project.east_property+"']").prop("checked", true);
+            $('#east_road_width').val(response.project.east_road_width);
+
+            $("input:radio[name='west_property'][value='"+response.project.west_property+"']").prop("checked", true);
+            $('#west_road_width').val(response.project.west_road_width);
+
+            $("input:radio[name='north_property'][value='"+response.project.north_property+"']").prop("checked", true);
+            $('#north_road_width').val(response.project.north_road_width);
+
+            $("input:radio[name='south_property'][value='"+response.project.south_property+"']").prop("checked", true);
+            $('#south_road_width').val(response.project.south_road_width);
+
+            if(response.project.plot_orientation > 0){
+                $('#plot_orientation').prop("checked", true);
+            }
+
+            $('#level').val(response.project.level);
+            $('#level_value').val(response.project.level_value);
 
             $('#updateProjectBtn').val(response.project.id);
+        }
+    });
+}
+
+//update project
+function updateProject(url){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    
+        var formData = new FormData($("#createProjectForm")[0]);
+        $.ajax({
+            type: "post",
+            url: url,
+            data: formData,
+            dataType: "json",
+            cache: false,
+            contentType: false, 
+            processData: false, 
+            success: function (response) {
+                if(response.status === 400)
+                {
+                    $('#create_project_err').html('');
+                    $('#create_project_err').addClass('alert alert-danger');
+                    var count = 1;
+                    $.each(response.errors, function (key, err_value) { 
+                        $('#create_project_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                    });
+    
+                }else{
+                    $('#create_project_err').html('');
+                    $('#createProjectModal').modal('hide');
+                    window.location.reload();
+                }
+            }
+        });
+    }
+    
+
+
+//Save Bungalow Property
+function saveBungalowProperty(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowPropertyForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            //console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_property_err').html('');
+                $('#bungalow_property_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_property_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_property_err').html('');
+                $('#bungalowPropertyModel').modal('hide');
+                window.location.reload();
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Entrance 
+function saveBungalowEntrance(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowEntranceForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            //console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_entrance_err').html('');
+                $('#bungalow_entrance_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_entrance_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_entrance_err').html('');
+                $('#bungalowEntranceModel').modal('hide');
+                window.location.reload();
+
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Drawing Hall 
+function saveBungalowDrawingHall(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowDrawingHallForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_drawinghall_err').html('');
+                $('#bungalow_drawinghall_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_drawinghall_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_drawinghall_err').html('');
+                $('#bungalowDrawingHallModel').modal('hide');
+                window.location.reload();
+
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Pantry 
+function saveBungalowPantry(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowPantryForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            //console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_pantry_err').html('');
+                $('#bungalow_pantry_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_pantry_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_pantry_err').html('');
+                $('#bungalowPantryModel').modal('hide');
+                window.location.reload();
+
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Floor Store 
+function saveBungalowFloorStore(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowFloorStoreForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            //console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_floorstore_err').html('');
+                $('#bungalow_floorstore_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_floorstore_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_floorstore_err').html('');
+                $('#bungalowFloorStoreForm').modal('hide');
+                window.location.reload();
+
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Bedroom Model 
+function saveBungalowBedroom(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowBedroomForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_bedroom_err').html('');
+                $('#bungalow_bedroom_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_bedroom_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_bedroom_err').html('');
+                $('#bungalowBedroomForm').modal('hide');
+                window.location.reload();
+
+            }
+        }
+    });
+}
+
+
+//Save Bungalow Basement Model 
+function saveBungalowBasement(url){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var formData = new FormData($("#bungalowBasementForm")[0]);
+    $.ajax({
+        type: "post",
+        url: url,
+        data: formData,
+        dataType: "json",
+        cache: false,
+        contentType: false, 
+        processData: false, 
+        success: function (response) {
+            console.log(response);
+            if(response.status === 400)
+            {
+                $('#bungalow_basement_err').html('');
+                $('#bungalow_basement_err').addClass('alert alert-danger');
+                var count = 1;
+                $.each(response.errors, function (key, err_value) { 
+                    $('#bungalow_basement_err').append('<span>' + count++ +'. '+ err_value+'</span></br>');
+                });
+
+            }else{
+                $('#bungalow_basement_err').html('');
+                $('#bungalowBasementForm').modal('hide');
+                window.location.reload();
+
+            }
         }
     });
 }

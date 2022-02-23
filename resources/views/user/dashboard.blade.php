@@ -1,19 +1,9 @@
 @extends('layouts.user.app')
-@section('page_title', 'User-Dashboard')
-
-@section('style')
-    {{-- <link rel="stylesheet" href="{{asset('public/sdpl-assets/user/css/slider.css')}}"> --}}
-    <style>
-      
-    </style>
-@endsection
-
+@section('page_title', 'User Dashboard')
 
 
 @section('content')
-
-
-    <div class="py-4">
+    <div class="py-3">
         <div class="row">
             <div class="offset-md-2 col-md-8 ">
                 <div class="row">
@@ -51,14 +41,6 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        {{-- <div class="card shadow-sm">
-                            <div class="card-body">
-                                <a href="#"><img src="{{asset('public/sdpl-assets/images/bunglows/bungalowrakeshagrawal.jpg')}}" class="img-thumbnail" alt="..."></a>
-                                <a href="#"><h6 style="text-align: center; margin-top:10px;">Township</h6></a>
-                            </div>
-                        </div> --}}
-                    </div> 
-                    <div class="col-md-4">
                         <div class="card text-center">
                             <div class="card-body">
                                 <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITALITY) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/hospitality.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
@@ -67,17 +49,27 @@
                                 <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::HOSPITALITY) ])}}">Hospitality</a> 
                             </div>
                         </div>
-                    </div>   
+                    </div> 
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/residential.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}">Residential</a> 
+                            </div>
+                        </div>
+                    </div>  
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 offset-md-2">
                         <div class="card text-center">
                             <div class="card-body">
-                                <a href="{{url('/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/residential.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::PG_INTERIOR_DESIGNS) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/interior.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
                             </div>
                             <div class="card-footer text-muted">
-                                <a href="{{url('/project-types',['project_group_id' => Crypt::encrypt(MyApp::RESIDENTIAL) ])}}">Residential</a> 
+                                <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::PG_INTERIOR_DESIGNS) ])}}">Interior Designs</a> 
                             </div>
                         </div>
                     </div>
@@ -86,23 +78,17 @@
                             <div class="card-body">
                                 <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::COMMERCIAL_SHOWROOM_OFFICE) ])}}"><img src="{{asset('public/sdpl-assets/images/project-group/commercial.jpg')}}" class="img-thumbnail" alt="..." style="height: 160px;"></a>
                             </div>
-                            <div class="card-footer text-muted">
+                            <div class="card-footer">
                                 <a href="{{url('user/project-types',['project_group_id' => Crypt::encrypt(MyApp::COMMERCIAL_SHOWROOM_OFFICE) ])}}">Comm. Show./Offices</a> 
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>    
             </div>
-
-            <div class="col-md-2">
-                
-            </div>
-
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-6">
             <div class="card ">
                 <div class="card-header">
@@ -115,10 +101,8 @@
                                 <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  style="height: 350px;" >
                             </div>
                         @endforeach
-                        
                         <a class="prev" onclick="prevSlide(1)">&#10094;</a>
                         <a class="next" onclick="nextSlide(1)">&#10095;</a>
-                        
                         <div class="dots-container hide">
                             <span class="dots" onclick="currentSlide(1)"></span>
                             <span class="dots" onclick="currentSlide(2)"></span>
@@ -126,7 +110,6 @@
                             <span class="dots" onclick="currentSlide(4)"></span>
                             <span class="dots" onclick="currentSlide(5)"></span>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -143,10 +126,8 @@
                                 <img src="{{MyApp::MAIN_URL.'public/storage/'.$item['img_path']}}"  class="img-thumbnail"  alt="..." style="height: 350px;" >
                             </div>
                         @endforeach
-
                         <a class="prev" onclick="prevSlide(2)">&#10094;</a>
                         <a class="next" onclick="nextSlide(2)">&#10095;</a>
-                        
                         <div class="dots-container">
                             <span class="dots" onclick="currentSlide(1)"></span>
                             <span class="dots" onclick="currentSlide(2)"></span>
@@ -159,9 +140,7 @@
             </div>
         </div>
     </div>
-    
-          
- 
+
 @endsection
 
 
@@ -202,7 +181,9 @@
         // })
         // .catch((error) => {
         // console.error('Error:', error);
+        
         });
+
     </script>
 @endsection
 

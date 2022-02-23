@@ -19,12 +19,15 @@ class ProfileController extends Controller
         $countries = Country::all();
 
         // fetch data two tables data from database
-        $user_detail = User::leftjoin('countries','users.country','=','countries.id') 
-                        ->leftjoin('states','users.state','=','states.id')
-                        ->leftjoin('cities','users.city','=','cities.id')
-                        ->where('users.id',$user_id)
-                        ->first(['users.*','countries.country_name','states.state_name','cities.city_name']);
+        // $user_detail = User::leftjoin('countries','users.country','=','countries.id') 
+        //                 ->leftjoin('states','users.state','=','states.id')
+        //                 ->leftjoin('cities','users.city','=','cities.id')
+        //                 ->where('users.id',$user_id)
+        //                 ->first(['users.*','countries.country_name','states.state_name','cities.city_name']);
         
+        $user_detail = User::find($user_id);
+        
+
         // $users = DB::table('users')
         // ->join('contacts', 'users.id', '=', 'contacts.user_id')
         // ->join('orders', 'users.id', '=', 'orders.user_id')

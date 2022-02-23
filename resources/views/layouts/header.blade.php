@@ -1,8 +1,8 @@
 
-    <div class="sticky-header main-bar-wraper">
+<div class="sticky-header main-bar-wraper">
     <div class="main-bar bg-white">
         <div class="header-center">
-            <div class="wt-header-left">
+            <div class="wt-header-right">
                 <div class="logo-header">
                     <div class="logo-header-inner logo-header-one">
                         <a href="{{url('/')}}">

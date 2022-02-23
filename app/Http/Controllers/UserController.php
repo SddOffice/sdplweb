@@ -27,25 +27,47 @@ class UserController extends Controller
 
     public function loginAuth(Request $req)
     {
-        $email = $req->post('email');
-        $password = $req->post('password');
-        $result = User::where(['email'=>$email])->first();
-        if($result)
-        {
-            if(Hash::check($req->post('password'),$result->password))
-            {
-                $req->session()->put('USER_LOGIN', true);
-                $req->session()->put('USER_ID', $result->id);
-                $req->session()->put('USER_NAME', $result->name);
-                return redirect('user/dashboard');
-            }else{
-                $req->session()->flash('error','Please enter valid password');
-                return redirect('/login');
-            }
+        $mobile_no = $req->input('mobile_no');
+        $password = $req->input('password');
+
+        $response = Http::post(MyApp::API_URL.'login', [
+            'mobile_no' => $mobile_no,
+            'password' => $password,
+        ]);
+
+        // echo($response["status"]);
+        // echo($response["msg"]);
+        // dd("ok");
+
+        if($response['status'] == 200){
+            $user = User::find($response['data']['id']);
+            $req->session()->put('USER_LOGIN', true);
+            $req->session()->put('USER_ID', $user->id);
+            $req->session()->put('USER_MOBILE', $user->mobile_no);
+            return redirect('user/dashboard');
         }else{
-            $req->session()->flash('error','Please enter valid login details');
+            $req->session()->put('msg', $response['msg']);
             return redirect('/login');
         }
+
+
+        // $result = User::where(['email'=>$email])->first();
+        // if($result)
+        // {
+        //     if(Hash::check($req->post('password'),$result->password))
+        //     {
+        //         $req->session()->put('USER_LOGIN', true);
+        //         $req->session()->put('USER_ID', $result->id);
+        //         $req->session()->put('USER_NAME', $result->name);
+        //         return redirect('user/dashboard');
+        //     }else{
+        //         $req->session()->flash('error','Please enter valid password');
+        //         return redirect('/login');
+        //     }
+        // }else{
+        //     $req->session()->flash('error','Please enter valid login details');
+        //     return redirect('/login');
+        // }
         
     }
 
@@ -88,7 +110,7 @@ class UserController extends Controller
     { 
         session()->forget('USER_LOGIN');
         session()->forget('USER_ID');
-        session()->forget('USER_NAME');
+        session()->forget('USER_MOBILE');
         session()->flash('msg','Logout successfully'); 
         return redirect('/login');
     }

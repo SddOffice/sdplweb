@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
@@ -13,6 +14,7 @@ use App\Models\Design;
 use App\Models\Project;
 use App\Models\ProjectType;
 use App\Models\ProjectDesign;
+
 
 use Crypt;
 use App\MyApp;
@@ -37,14 +39,16 @@ class ProjectController extends Controller
         }
 
         $projects = Project::join('project_types','project_types.id','=','projects.project_type_id')
-                        ->join('users','users.id','=','projects.user_id')
                         ->where('projects.user_id',$user_id)
-                        ->get(['projects.*','project_types.project_type','users.name as client_name']);
+                        ->get(['projects.*','project_types.project_type']);
 
         $design_type_name = array();
         foreach ($projects as $key => $project) {
             $design_type_name[] = getDesignType($project->design_type);
         }
+
+        $bedrooms = DB::table('bedrooms')->get();
+
 
         return view('user.project', [
             'countries'=>$countries,
@@ -52,6 +56,7 @@ class ProjectController extends Controller
             'design_type'=>$design_type,
             'design_list'=>$design_list,
             'projects'=>$projects,
+            'bedrooms'=>$bedrooms,
             'design_type_name'=>$design_type_name,
             'project_prestigious_img'=>$project_img['project_prestigious_img'],
             'project_recent_project_img'=>$project_img['project_recent_project_img']

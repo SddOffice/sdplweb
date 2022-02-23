@@ -24,7 +24,7 @@
                                         <li class="list-group-item">
                                             <b>Mobile</b> <a class="float-right" id="user_mobile">{{$user_detail->mobile_no}}</a>
                                         </li>
-                                        <li class="list-group-item">
+                                        {{-- <li class="list-group-item">
                                             <b>Country</b> <a class="float-right" id="">{{$user_detail->country_name}}</a>
                                         </li>
                                         <li class="list-group-item">
@@ -35,7 +35,7 @@
                                         </li>
                                         <li class="list-group-item">
                                             <b>Address</b> <a class="float-right" id="">{{$user_detail->address}}</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                     <!-- Button trigger modal -->
 
@@ -62,13 +62,11 @@
                                                         <input type="text" name="mobile_no" id="mobile_no" class="form-control form-control-sm"  placeholder="Enter mobile no" required>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        
                                                         <select name="country" id="country" class="form-select form-select-sm" onchange="getState(this.value);">
                                                             <option selected disabled>Choose Country</option>
                                                             @foreach ($countries as $country)
                                                                 <option value="{{$country->id}}">{{$country->country_name}}</option>
                                                             @endforeach
-                                                            
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
@@ -196,7 +194,7 @@
 
 @section('script')
     <script>
-         $(document).ready(function () {
+        $(document).ready(function () {
 
             $(document).on('click','#updateUserDetailBtn', function (e) {
                 e.preventDefault();
@@ -207,16 +205,15 @@
                 $("#userDetailForm").trigger("reset");
 
                 editUserDetail(user_id);
-              
             });
 
             $(document).on('change','#state', function () {
                 const state_id = $(this).val();
                 getCity(state_id);
             });
-         });
+        });
 
-         function editUserDetail(user_id) {
+        function editUserDetail(user_id) {
             $.ajax({
                 type: "get",
                 url: "edit-user-detail/"+user_id,
@@ -278,8 +275,10 @@
                 }
             }
         });
+        
         }
     </script>
+
 
 @endsection
 

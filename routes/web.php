@@ -10,6 +10,9 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BungalowController;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,21 @@ use App\Http\Controllers\BungalowController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/send-mail', function () {
+    // Mail::send([], [], function($msg){
+    //     $msg->to('ssdoffice44@gmail.com', 'Rohit Namdeo')
+    //         ->subject('Testing mail')
+    //         ->setBody('Hi, this is working fine');
+    // });
+    $mail_status = Http::get(MyApp::API_URL.'send-mail');
+    echo $mail_status['status'];
+});
+
+Route::get('/demo-modal', function () {
+    return view('user.demo_modal');
+});
+
 
 Route::get('/', function () {
     return view('home');

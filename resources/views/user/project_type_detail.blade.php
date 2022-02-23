@@ -1,42 +1,33 @@
 @extends('layouts.user.app')
-@php
-    $project_type_name = ucwords($project_type_name);
-@endphp
-@section('page_title', $project_type_name )
+    @php
+        $project_type_name = ucwords($project_type_name);
+    @endphp
+@section('page_title', $project_type_name)
 
 
 @section('content')
 
     @include('user.modal-layouts.bungalow_detail_modal')
 
-    <div class="row ">
-	    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		    <button type="button" id="createProject" class="btn btn-primary btn-flat btn-sm mt-2">Create Project</button>
-	    </div>
-    </div>  
-     
-
-    <div class="row py-2">        
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header">
-                    <b> Project Detail </b>
+    {{-- <div class="py-3">
+        <div class="card p-2">
+            <h6 class="border-bottom pb-2 mb-0"><strong>Existing Projects</strong></h6>
+            <div class="d-flex text-muted pt-2">
+                <img src="{{asset('public/sdpl-assets/images/logo/businessman.png')}}" width="35" height="35" class="rounded-circle me-3" alt="..."> 
+                <div class="pb-2 mb-0 w-100 border-bottom">
+                    <div class="d-flex">
+                        <strong class="text-gray-dark">Bungalow</strong>
+                    </div>
+                    <span class="d-block"><h6>#AmanTiwari</h6></span>
                 </div>
-                <div class="card-body" >
-                    
-                </div>
-            </div>
+            </div> 
         </div>
-            
-    </div>
-
-
-    <div class="row">
+    </div> --}}
+    
+    <div class="row py-3">
         <div class="col-md-6">
             <div class="card ">
-                <div class="card-header">
-                    <b>Our Prestigious </b>
-                </div>
+                <div class="card-header"><b>Our Prestigious Bungalow Projects</b></div>
                 <div class="card-body" >
                     <div class="carousel-container" slider-type="{{MyApp::FIRST_SLIDER}}">
                         @foreach ($gallery as $item)
@@ -57,28 +48,28 @@
                 </div>
             </div>
         </div>
-
         <div class="col-md-6">
             <div class="card ">
-                <div class="card-header">
-                    <b> Other Details </b>
-                </div>
+                <div class="card-header"><strong>Other Details</strong></div>
                 <div class="card-body">
                     <div class="row">
+
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                <a href="#"><h4>Gallery</h4></a>
+                                <a href="#"><h5>Gallery</h5></a>
                                 </div>
                                 <div class="card-body">
-                                    <a href=""><img src="{{asset('public/sdpl-assets/images/icons/gallery.png')}}" class="card-img-top" alt="..."></a>
+                                    <a href=""><img src="{{asset('public/sdpl-assets/images/icons/gallery.png')}}" class="card-img-top" ></a>
                                 </div>
                             </div>
                         </div>
+
+                        
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                <a href="#"><h4>Sample Designs</h4></a>
+                                <a href="#"><h5>Sample Designs</h5></a>
                                 </div>
                                 <div class="card-body">
                                     <img src="{{asset('public/sdpl-assets/images/icons/pdf.png')}}" class="card-img-top" alt="...">
@@ -86,9 +77,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card">
+                            <div class="card" id="createProject">
                                 <div class="card-header">
-                                <a href="#"><h4>Interested Next</h4></a>
+                                <a href="#"><h5>Interested Next</h5></a>
                                 </div>
                                 <div class="card-body">
                                     <img src="{{asset('public/sdpl-assets/images/icons/next.png')}}" class="card-img-top" alt="...">
@@ -101,21 +92,28 @@
         </div>
     </div>
 
-    
 @endsection
 
 
+
 @section('script')
+
     <script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
     <script src="{{asset('public/sdpl-assets/user/js/modal/residential.js')}}" ></script>
-
+    
     <script>
+
         $(document).ready(function () {
-                
+            
+            $(document).on('click','#saveProjectBtn', function (e) {
+            e.preventDefault();
+            const url = "{{MyApp::API_URL}}project";
+            // alert(url);
+            saveProject(url);
+            });
         });
 
     </script>
-
 
 @endsection
 

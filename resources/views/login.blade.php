@@ -17,23 +17,21 @@
         <div class="login-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="{{url('/login')}}" class="h2"><b>SDPL </b>Web</a>
+                    <a href="{{url('/login')}}" class="h2"><b>SDPL</b>Web</a>
                 </div>
                 <div class="card-body">
-                    
                     @if(session()->has('msg'))
                         <div class="alert alert-info" role="alert">
                             {{session('msg')}} 
                         </div>
                     @endif    
-                    
                     <form action="{{url('login-auth')}}" method="post">
                         @csrf
                         <div class="input-group mb-3">
-                            <input type="email" name="email" class="form-control form-control-sm" placeholder="Email">
+                            <input type="text" name="mobile_no" class="form-control form-control-sm" placeholder="Mobile Number">
                             <div class="input-group-append">
                                 <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
+                                    <span class="fas fa-mobile"></span>
                                 </div>
                             </div>
                         </div>
@@ -51,17 +49,16 @@
                             </div>
                             <div class="col-6">
                                 <p class="mb-1">
-                                    <a href="{{url('/registration')}}">Registration</a>
+                                    <a href="{{url('/registration')}}" style="margin-left: 50%;">Registration</a>
                                 </p>
                             </div>
                         </div>
-                        @if(session()->has('error'))
+                        {{-- @if(session()->has('errors'))
                             <div class="alert alert-danger mt-2" role="alert">
-                                {{session('error')}} 
+                                {{session('errors')}} 
                             </div>
-                        @endif
+                        @endif --}}
                     </form>
-            
                 </div>
             </div>
         </div>
