@@ -42,13 +42,15 @@ class ProjectController extends Controller
                         ->where('projects.user_id',$user_id)
                         ->get(['projects.*','project_types.project_type']);
 
+                        // echo "<pre>";
+                        // print_r($projects);
+
         $design_type_name = array();
         foreach ($projects as $key => $project) {
             $design_type_name[] = getDesignType($project->design_type);
         }
 
         $bedrooms = DB::table('bedrooms')->get();
-
 
         return view('user.project', [
             'countries'=>$countries,
@@ -90,7 +92,7 @@ class ProjectController extends Controller
             $design_list[] = Design::where(['design_type_id'=>$value->id])->get();
         }
         
-
+        $bedrooms = DB::table('bedrooms')->get();
         $project_type_name = ProjectType::where(['id'=>$project_type_id])->first('project_type');
         $gallery = Http::get(MyApp::API_URL.'get-gallery/'.$project_type_id);
         return view('user.project_type_detail',[
@@ -98,8 +100,10 @@ class ProjectController extends Controller
             'project_group'=>$project_group,
             'design_type'=>$design_type,
             'design_list'=>$design_list,
+            'bedrooms'=>$bedrooms,
             'project_type_name'=>$project_type_name['project_type'],
-            'gallery'=>$gallery['gallery']
+            'gallery'=>$gallery['gallery'],
+            'project_type_id'=>$project_type_id
         ]);
     }
 
@@ -121,5 +125,4 @@ class ProjectController extends Controller
             'designs'=>$designs
         ]);
     }
-    
 }

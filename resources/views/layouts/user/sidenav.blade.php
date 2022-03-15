@@ -72,7 +72,7 @@
                     <li class="nav-item inline">
                         <a href="{{url('/user/project')}}" class="nav-link">
                             <i class="nav-icon fas fa-table"></i>
-                            <p>Existing Project</p>
+                            <p>Project</p>
                         </a>
                     </li>
                 @else

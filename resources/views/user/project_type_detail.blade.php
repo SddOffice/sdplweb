@@ -6,28 +6,56 @@
 
 
 @section('content')
-
     @include('user.modal-layouts.bungalow_detail_modal')
-
-    {{-- <div class="py-3">
-        <div class="card p-2">
-            <h6 class="border-bottom pb-2 mb-0"><strong>Existing Projects</strong></h6>
-            <div class="d-flex text-muted pt-2">
-                <img src="{{asset('public/sdpl-assets/images/logo/businessman.png')}}" width="35" height="35" class="rounded-circle me-3" alt="..."> 
-                <div class="pb-2 mb-0 w-100 border-bottom">
-                    <div class="d-flex">
-                        <strong class="text-gray-dark">Bungalow</strong>
-                    </div>
-                    <span class="d-block"><h6>#AmanTiwari</h6></span>
-                </div>
-            </div> 
-        </div>
-    </div> --}}
     
-    <div class="row py-3">
+    <div class="row pt-3">
         <div class="col-md-6">
-            <div class="card ">
-                <div class="card-header"><b>Our Prestigious Bungalow Projects</b></div>
+            <div class="card">
+                <div class="card-body fluid-container">
+                    <div class="d-flex align-items-center bg-gray p-1 my-2 rounded shadow-sm PDPFC">
+                        <img class="me-4" src="{{asset('public/sdpl-assets/user/images/bungalow_details/report.png')}}" alt=""  height="38">
+                        <a href="{{url('/user/project')}}">
+                        </a>
+                        <h5 class="text-black existing_project" project-type-id="{{$project_type_id}}" user-id="{{session('USER_ID')}}">Existing Projects</h5>
+                    </div>
+                    <div class="d-flex align-items-center bg-gray p-1 mb-2 rounded shadow-sm PDPFC">
+                        <img class="me-4" src="{{asset('public/sdpl-assets/user/images/bungalow_details/gallery.png')}}" alt="" height="38">
+                        <h5 class="text-black">Gallery</h5>
+                    </div>
+                    <div class="d-flex align-items-center bg-gray p-1 mb-2 rounded shadow-sm PDPFC">
+                        <img class="me-4" src="{{asset('public/sdpl-assets/user/images/bungalow_details/pdf.png')}}" alt="" height="38">
+                        <a href="{{url('/public/sdpl-assets/pdf/technicaldrawingbook.pdf')}}" target="_blank"><h5 class="text-black">Sample Drawing Book</h5></a>
+                    </div>
+                    <div class="d-flex align-items-center bg-gray p-1 mb-2 rounded shadow-sm PDPFC" id="mainModalBtn" modal-name="createProject">
+                        <img class="me-4" src="{{asset('public/sdpl-assets/user/images/bungalow_details/redo.png')}}" height="38">
+                        <h5 class="text-black">Interedted Next</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Bungalow Existing Projects</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-2"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-8"><h5><b><i>Our Prestigeous Bungalow Projects</i></b></h5></div>
+                        <div class="offset-md-2 col-md-2"><a href="http://sdplweb.com/" target="_blank">See More</a></div>
+                    </div>
+                </div>
                 <div class="card-body" >
                     <div class="carousel-container" slider-type="{{MyApp::FIRST_SLIDER}}">
                         @foreach ($gallery as $item)
@@ -48,72 +76,69 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card ">
-                <div class="card-header"><strong>Other Details</strong></div>
-                <div class="card-body">
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                <a href="#"><h5>Gallery</h5></a>
-                                </div>
-                                <div class="card-body">
-                                    <a href=""><img src="{{asset('public/sdpl-assets/images/icons/gallery.png')}}" class="card-img-top" ></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                <a href="#"><h5>Sample Designs</h5></a>
-                                </div>
-                                <div class="card-body">
-                                    <img src="{{asset('public/sdpl-assets/images/icons/pdf.png')}}" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card" id="createProject">
-                                <div class="card-header">
-                                <a href="#"><h5>Interested Next</h5></a>
-                                </div>
-                                <div class="card-body">
-                                    <img src="{{asset('public/sdpl-assets/images/icons/next.png')}}" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
 @endsection
 
 
-
 @section('script')
-
     <script src="{{asset('public/sdpl-assets/user/js/slider.js')}}" ></script>
     <script src="{{asset('public/sdpl-assets/user/js/modal/residential.js')}}" ></script>
     
     <script>
-
         $(document).ready(function () {
-            
-            $(document).on('click','#saveProjectBtn', function (e) {
-            e.preventDefault();
-            const url = "{{MyApp::API_URL}}project";
-            // alert(url);
-            saveProject(url);
-            });
-        });
 
+            // var user_id = {{session('USER_ID')}}";
+            // alert(user_id);
+            
+            $(document).on('click','#mainModalBtn', function () {
+
+                $('#project_module').html("");
+                $('#project_module').html($('#project_modal').html());
+                previousModal();
+            });
+
+            $(document).on('click','#saveModalBtn', function (e) {
+                e.preventDefault();
+
+                var modal_url = $('#project_url').attr('url');
+                const url = "{{MyApp::API_URL}}"+modal_url;
+                saveProject(url);
+            });
+
+            $(document).on('click','#nextModalBtn', function (e) {
+                e.preventDefault();
+                nextModal();
+            });
+
+            $(document).on('click','#previousModalBtn', function (e) {
+                e.preventDefault();
+                previousModal();
+            });        
+
+            
+            $(document).on('click','.existing_project', function (e) {
+                e.preventDefault();
+
+                var user_id  = $(".existing_project").attr("user-id");
+                var project_type_id  = $(".existing_project").attr("project-type-id");
+                fetch(`{{MyApp::API_URL}}existing-project/${user_id}/${project_type_id}`)
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    
+                });  
+            }); 
+
+
+            $(document).on('click','#nextModalBtn', function (e) {
+                e.preventDefault();
+                
+                
+                const tba_url = `{{MyApp::API_URL}}project-builtup-area/${project_id}`;
+                totalbuiltuparea(tba_url);
+            }); 
+
+        });
     </script>
 
 @endsection
-

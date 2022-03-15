@@ -25,10 +25,11 @@ class MyApp {
     const FIRST_SLIDER = 1;
 
     const G_Floor = "ground floor";
-    const FLOOR_G = "1 floor";
-    const FLOOR_G_1 = "2 floor";
-    const FLOOR_G_2 = "3 floor";
-    const FLOOR_G_3 = "4 floor";
+    
+    const FLOOR_G = "1";
+    const FLOOR_G_1 = "2";
+    const FLOOR_G_2 = "3";
+    const FLOOR_G_3 = "4";
     const OTHER_FLOOR = "other";
 
     const MORE = "more";
@@ -68,6 +69,27 @@ class MyApp {
     const BASEMENT = "basement";
     const STILT = "stilt";
     const GROUND_OTHER_THAN_STILT_AREA = "ground other than stilt area";
+
+
+    const WALK_IN_CUPBOARD = "walk-in cupboard";
+    const VANITY = "vanity";
+    const CUPBOARD = "cupboard";
+
+
+    const CHAIR_ARRANGEMENT = "chair arrangement";
+    const SOFA_ARRANGEMENT = "sofa arrangement";
+    const WRITING_LAPTOP_TABLE = "Writing laptop table";
+    const TV = "tv";
+    const MINI_BAAR = "mini baar";
+
+    const FT = "1";
+    const MTR = "2";
+
+    const ZERO_ONE = "1";
+
+    const REGULAR_PLOT = "1";
+    const IR_REGULAR_PLOT = "2";
+
 
 
 }

@@ -44,32 +44,19 @@ $(document).ready(function () {
     //     //saveProject(url);
     // });
 
-    $(document).on('click','.editProjectBtn', function (e) {
-        e.preventDefault();
-        const project_id = $(this).val();
-        editProject(project_id);
-    });
-
-    // $(document).on('click','#updateProjectBtn', function (e) {
-    //     e.preventDefault();
-    //     const project_id = $(this).val();
-    //     updateProject(project_id);
-    // });
-
-
     //Bungalow Property Model
-    $(document).on('click','#bungalowPropertyBtn', function (e) {
-        e.preventDefault();
-        
-        var project_id = $(this).val();
-        $('#bungalowPropertyModel').modal('show');
-        $('#bungalow_property_err').html('');
-        $('#bungalow_property_err').removeClass('alert alert-danger');
-        $("#bungalowPropertyForm").trigger("reset"); 
-        $('#bungalow_project_id').val(project_id);
-        $('#saveBungalowPropertyBtn').removeClass('hide');
-        $('#updateBungalowPropertyBtn').addClass('hide');
-    });
+    
+
+    // $(function () {
+    //     $(document).on("click", function () {
+    //     if($('#ir_regular_plot').prop("checked") == true){
+    //         $('.onirregular').show();
+    //     }
+    //     else if($('#ir_regular_plot').prop("checked") == false){
+    //         $('.onirregular').hide();
+    //     }
+    //     });
+    // });
 
     $(function () {
         $(document).on("click", function () {
@@ -92,6 +79,50 @@ $(document).ready(function () {
         }
         });
     });
+
+    // $(document).on("keyup",".input_east_show", function(){
+    //     var east_road_width = $("#east_road_width").val();
+    //     // var plot_width = $("#plot_width").val();
+    //     var plot_area = FeettoMeterConversion(plot_length, plot_width);
+    //     $('#plot_size').val(plot_area);
+    //     alert(plot_area);
+    // });   
+    // $(document).on("change",".input_east_show", function () {
+        
+    //     var dimention = $("#dimention").val();
+    //     //alert(dimention);
+    //     var east_road_width = $("#east_road_width"). val();
+    //     var feet_roadWidth = toFeet(east_road_width);
+    //     var meter_roadWidth = toMeter(east_road_width);
+
+    //     if(dimention == 1){
+    //         console.log(feet_roadWidth);
+    //         //$(".input_east_show").val(feet_roadWidth);
+    //     }else if(dimention == 2){
+    //         console.log(meter_roadWidth);
+    //         //$(".input_east_show").val(meter_roadWidth);
+    //     }
+    //     alert(feet_roadWidth);
+    //     alert(meter_roadWidth);
+    //   });
+
+    $(document).on("change","#dimention", function () {
+
+        // var dimention = $("#dimention").val();
+        // alert(dimention);
+        var plot_aarea = conversion();
+        alert(plot_aarea);
+        //console.log(plot_area);
+        $('#plot_length').val(plot_aarea);
+        // alert("Plot lengh" + " "+plot_area);
+        // $('#plot_width').val(plot_area);
+        // alert("Plot width" + " "+plot_area);
+        //$('#plot_size').val(plot_area);
+        // $('#east_road_width').val(plot_area);
+    });
+
+    
+
 
     $(function () {
         $(document).on("click", function () {
@@ -136,6 +167,9 @@ $(document).ready(function () {
         }
         });
     });
+
+    
+    
 
 
     //Bungalow Entrance Model
@@ -225,6 +259,23 @@ $(document).ready(function () {
         });
     });
 
+    
+    // $(function () {
+    //     $(document).on("click", function () {
+    //     if($('.en_tranceBtn').prop("checked") == true){
+    //         $('.bungalow_entrance_modal').show();
+    //     }
+    //     else if($('.en_tranceBtn').prop("checked") == false){
+    //         $('.bungalow_entrance_modal').hide();
+    //     }
+    //     });
+    // });
+    // $(document).on('click','#updateBungalowEntranceBtn', function (e) {
+    //     e.preventDefault();
+    //     const project_id = $(this).val();
+    //     updateBungalowEntrance(project_id);
+    // });
+
 
     //Bungalow Drawing-Hall Model
     $(document).on('click','.bungalowDrawingHallBtn', function (e) {
@@ -286,6 +337,12 @@ $(document).ready(function () {
             $('.washroom_area_input').hide();
         }
         });
+    });
+
+    $(document).on('click','.editDrawingHallBtn', function (e) {
+        e.preventDefault();
+        const project_id = $(this).val();
+        editBungalowDrawingHall(project_id);
     });
 
     //Bungalow Pantry Model
@@ -406,71 +463,81 @@ $(document).ready(function () {
     });
 
 
-    // $(document).on('change','.bedroom_floor_req', function (e) {
-    //     e.preventDefault();
-
-    //     if($('.bedroom_floor_req').val() == 'other') {
-    //         $('#bedroom_floor_specific_req').removeClass('hide');
-    //     }else {
-    //         $('#bedroom_floor_specific_req').addClass('hide'); 
-    //     } 
-    // });
-
-    // $(document).on('change','.bedroom_nos_req', function (e) {
-    //     e.preventDefault();
-
-    //     if($('.bedroom_nos_req').val() == 'other') {
-    //         $('#bedroom_nos_specific_req').removeClass('hide');
-    //     }else {
-    //         $('#bedroom_nos_specific_req').addClass('hide'); 
-    //     } 
-    // });
-
-    // $(document).on('change','.bedroom_toilet_req', function (e) {
-    //     e.preventDefault();
-
-    //     if($('.bedroom_toilet_req').val() == 'other') {
-    //         $('#bedroom_toilet_specific_req').removeClass('hide');
-    //     }else {
-    //         $('#bedroom_toilet_specific_req').addClass('hide'); 
-    //     } 
-    // });
-
-    // $(document).on('change','.bedroom_dress_req', function (e) {
-    //     e.preventDefault();
-
-    //     if($('.bedroom_dress_req').val() == 'other') {
-    //         $('#bedroom_dress_specific_req').removeClass('hide');
-    //     }else {
-    //         $('#bedroom_dress_specific_req').addClass('hide'); 
-    //     } 
-    // });
-
-    // $(document).on('change','.bedroom_facilities_req', function (e) {
-    //     e.preventDefault();
-
-    //     if($('.bedroom_facilities_req').val() == 'other') {
-    //         $('#bedroom_facilities_specific_req').removeClass('hide');
-    //     }else {
-    //         $('#bedroom_facilities_specific_req').addClass('hide'); 
-    //     } 
-    // });
-
-
-
-
-    $(document).on("change",'.bedroom', function (e) {
+    $(document).on('change','.bedroom_floor_req', function (e) {
         e.preventDefault();
-        var bedroom_id = $('.bedroom input[type="checkbox"]:checked').val();
-        var bedroom_type = $('.bedroom input[type="checkbox"]:checked').attr('bedroom-type');
-        //$('#bungalow_bedroom_type_detail').html("");
-        // $("#bedroom_modal").attr(id, "value");
-        $('#bungalow_bedroom_type_detail').append($('#bedroom_modal').html());
+
+        if($('.bedroom_floor_req').val() == 'other') {
+            $('#bedroom_floor_specific_req').removeClass('hide');
+        }else {
+            $('#bedroom_floor_specific_req').addClass('hide'); 
+        } 
+    });
+
+    $(document).on('change','.bedroom_nos_req', function (e) {
+        e.preventDefault();
+
+        if($('.bedroom_nos_req').val() == 'other') {
+            $('#bedroom_nos_specific_req').removeClass('hide');
+        }else {
+            $('#bedroom_nos_specific_req').addClass('hide'); 
+        } 
+    });
+
+    $(document).on('change','.bedroom_toilet_req', function (e) {
+        e.preventDefault();
+
+        if($('.bedroom_toilet_req').val() == 'other') {
+            $('#bedroom_toilet_specific_req').removeClass('hide');
+        }else {
+            $('#bedroom_toilet_specific_req').addClass('hide'); 
+        } 
+    });
+
+    $(document).on('change','.bedroom_dress_req', function (e) {
+        e.preventDefault();
+
+        if($('.bedroom_dress_req').val() == 'other') {
+            $('#bedroom_dress_specific_req').removeClass('hide');
+        }else {
+            $('#bedroom_dress_specific_req').addClass('hide'); 
+        } 
+    });
+
+    $(document).on('change','.bedroom_facilities_req', function (e) {
+        e.preventDefault();
+
+        if($('.bedroom_facilities_req').val() == 'other') {
+            $('#bedroom_facilities_specific_req').removeClass('hide');
+        }else {
+            $('#bedroom_facilities_specific_req').addClass('hide'); 
+        } 
+    });
+
+    //Bungalow Bedroom
+    $(document).on('change','.bedroom', function () {
+        var bedroom_id = $(this).attr('value');
+        if($(this).prop('checked')) {
+            $('#bungalow_bedroom_type_detail').append($('.bedroom_modal').html());
+            $('#bungalow_bedroom_type_detail').find('#bedroom_type_modal').attr('id','bedroom_type_modal_'+bedroom_id);
+        } else {
+            $('#bungalow_bedroom_type_detail').find('#bedroom_type_modal_'+bedroom_id).hide('#bedroom_type_modal_'+bedroom_id);
+        }	 
+    });
+
+    //Designs
+    $(document).on('change','.design_type', function () {
+        var design_type_id = $(this).attr('value');
+        if($(this).prop('checked')) {
+            
+            $('#show_design_'+design_type_id +" "+'input[type="checkbox"]').each(function(){
+                this.checked = false; 
+            });
+            $('#show_design_'+design_type_id).show();
+        } else {
+            $('#show_design_'+design_type_id).hide();
+        }	 
+    });
         
-    })
-
-    
-
 
     //Bungalow Basement Model
     $(document).on('click','.bungalowBasementBtn', function (e) {
@@ -552,6 +619,15 @@ $(document).ready(function () {
         }
         });
     });
+
+
+    $(document).on("keyup",".input", function(){
+        var plot_length = $("#plot_length").val();
+        var plot_width = $("#plot_width").val();
+        var plot_area = plotArea();
+        $('#plot_size').val(plot_area);
+        
+    });   
 
     
 });

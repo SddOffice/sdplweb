@@ -103,7 +103,7 @@ Route::group(['middleware'=>'user_auth'], function(){
     Route::get('/user/edit-user-detail/{user_id}', [ProfileController::class, 'editUserDetail']);
     
     Route::get('user/project-types/{project_group_id}', [ProjectController::class, 'projectTypes']);
-    // Route::get('user/project-type-detail/{project_type_id}', [ProjectController::class, 'projectTypeDetail']);
+    //Route::get('user/project-type-detail/{project_type_id}', [ProjectController::class, 'projectTypeDetail']);
     Route::post('user/project-type-detail', [ProjectController::class, 'projectTypeDetail']);
 
 
@@ -111,6 +111,9 @@ Route::group(['middleware'=>'user_auth'], function(){
     Route::get('user/project', [ProjectController::class, 'index']);
     Route::get('user/get-project-type/{project_group_id}', [MasterController::class, 'getProjectType']);
     Route::get('user/edit-project/{project_id}', [ProjectController::class, 'editProject']);
+    Route::get('user/edit-bungalow-entrance/{project_id}', [ProjectController::class, 'editBungalowEntrance']);
+    Route::get('user/edit-bungalow-drawing-hall/{project_id}', [ProjectController::class, 'editBungalowDrawingHall']);
+
 
 
     Route::get('user/logout', [UserController::class, 'logout']);

@@ -418,8 +418,68 @@
         </div>
     </div>
     <!-- OUR WORK CONTENT END  --> 
-    
-        
+
+
+    {{-- Map --}}
+    <div class="section-full small-device  p-t80 p-b50 bg-gray">
+        <div class="container">
+            <!-- TITLE START -->
+            <div class="section-head text-center">
+                <div class="wt-separator-outer separator-center">
+                    <div class="wt-separator">
+                        <span class="text-primary text-uppercase sep-line-one ">Projects Maps</span>
+                    </div>
+                </div>
+                <h2>Free Download Maps & Images</h2>
+            </div>
+
+            <div class=row>
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-body text-center">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="public/sdpl-assets/images/3D/Gopika Vihar Duplexes.jpg" target="_blank"><img src="public/sdpl-assets/images/3D/Gopika Vihar Duplexes.jpg" class="img-thumbnail" alt="..."></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{url('/public/sdpl-assets/images/3D/map/gopika vihar.pdf')}}" target="_blank"><img src="{{url('/public/sdpl-assets/images/3D/map/gopika_vihar_pdf_jpf.jpg')}}" class="img-thumbnail" alt="..."></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-body text-center">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="public/sdpl-assets/images/3D/platinum heights_duplex 1.jpg" target="_blank"><img src="public/sdpl-assets/images/3D/platinum heights_duplex 1.jpg" class="img-thumbnail" alt="..."></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{url('/public/sdpl-assets/images/3D/map/udit.pdf')}}" target="_blank"><img src="{{url('/public/sdpl-assets/images/3D/map/udit.jpg')}}" class="img-thumbnail" alt="..."></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" >
+                        <div class="card-body text-center">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="public/sdpl-assets/images/3D/Golden Town_Duplex.jpg" target="_blank"><img src="public/sdpl-assets/images/3D/Golden Town_Duplex.jpg" class="img-thumbnail" alt="..."></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{url('/public/sdpl-assets/images/3D/map/The golden plaza ground floor.pdf')}}" target="_blank"><img src="{{url('/public/sdpl-assets/images/3D/map/golden_plaza_pdf_img.jpg')}}" class="img-thumbnail" alt="..."></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
     
