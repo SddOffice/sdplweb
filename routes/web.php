@@ -91,6 +91,7 @@ Route::post('/login-auth', [UserController::class, 'loginAuth']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/project-types/{project_group_id}', [ProjectController::class, 'projectTypes']);
 Route::post('/project-type-detail', [ProjectController::class, 'projectTypeDetail']);
+// Route::get('/project-gallery/{project_type_id}', [ProjectController::class, 'projectTypeDetail']);
 
 Route::group(['middleware'=>'user_auth'], function(){
     Route::get('user/dashboard', [DashboardController::class, 'index']);

@@ -6,7 +6,7 @@
     <div class="row pt-3">
         @foreach ($project_type as $type)
             <div class="col">
-                <div class="card" style="height: 170px;">
+                <div class="card project_card" style="height: 170px;">
                     <div class="card-body"> 
                         <a href="#"><img src="{{MyApp::MAIN_URL.'public/storage/' .$type['img_path']}}" class="img-thumbnail" alt="{{$type['project_type']}}"></a> 
                     </div>
@@ -14,12 +14,11 @@
                         <form method="POST" action="{{url('user/project-type-detail')}}">
                             <input type="hidden" name="project_type_id" value="{{ Crypt::encrypt($type['id']) }}">  
                             @csrf
-                           <button class="btn btn-link h6">{{ucwords($type['project_type'])}}</button>
+                           <button class="btn btn-link h6"><span class="projecttypespanner"></span>{{ucwords($type['project_type'])}}</button>
                         </form>
                     </div>
                 </div>
             </div>
-
         @endforeach
     </div>
 

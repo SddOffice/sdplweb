@@ -244,7 +244,7 @@
         }
 
         function updateUserDetail(user_id) {
-            alert("user_id");
+            alert(user_id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

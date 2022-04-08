@@ -80,10 +80,11 @@ class ProjectController extends Controller
 
     public function projectTypeDetail(Request $req)
     {
-        
+        $user_id = session('USER_ID');
+
         $project_type_id = Crypt::decrypt($req->input('project_type_id'));
         //$project_type_id = $req->input('project_type_id');
-        $project_group = ProjectGroup::all();
+        // $project_group = ProjectGroup::all();
         $countries = Country::all();
         $design_type = DesignType::all();
         $design_list = array();
@@ -91,38 +92,51 @@ class ProjectController extends Controller
         {
             $design_list[] = Design::where(['design_type_id'=>$value->id])->get();
         }
-        
+       
+
         $bedrooms = DB::table('bedrooms')->get();
-        $project_type_name = ProjectType::where(['id'=>$project_type_id])->first('project_type');
+        $project_type = ProjectType::where(['id'=>$project_type_id])->first(['project_group_id','project_type']);
         $gallery = Http::get(MyApp::API_URL.'get-gallery/'.$project_type_id);
+
+        $existing_projects = Http::get(MyApp::API_URL.'existing-project/'.$user_id.'/'.$project_type_id);
+        // echo $project_type_id;
+        // print_r($existing_projects['existing_projects']);
+        // dd();
+        // $project_gallery = Http::get(MyApp::API_URL.'get-project-gallery/'.$project_type_id);
+        
         return view('user.project_type_detail',[
             'countries'=>$countries,
-            'project_group'=>$project_group,
             'design_type'=>$design_type,
             'design_list'=>$design_list,
             'bedrooms'=>$bedrooms,
-            'project_type_name'=>$project_type_name['project_type'],
+            'project_type_name'=>$project_type['project_type'],
+            'project_group_id'=>$project_type['project_group_id'],
             'gallery'=>$gallery['gallery'],
-            'project_type_id'=>$project_type_id
+            'existing_projects'=>$existing_projects['existing_projects'],
+            // 'project_gallery'=>$project_gallery['project_gallery'],
+            'project_type_id'=>$project_type_id,
+            'user_id'=>$user_id
+            
         ]);
     }
 
-    public function editProject($project_id)
-    {  
-        $project = Project::find($project_id);
-        $project_type = ProjectType::where(['project_group_id'=>$project->project_group_id])->get();
-        $states = State::where(['country_id'=>$project->country])->get();
-        $cities = City::where(['state_id'=>$project->state])->get();
+    // public function editProject($project_id)
+    // {  
+    //     $project = Project::find($project_id);
+    //     $project_type = ProjectType::where(['project_group_id'=>$project->project_group_id])->get();
+    //     $states = State::where(['country_id'=>$project->country])->get();
+    //     $cities = City::where(['state_id'=>$project->state])->get();
 
-        $designs = ProjectDesign::where(['project_id'=>$project->id])->get(['design_id']);
+    //     $designs = ProjectDesign::where(['project_id'=>$project->id])->get(['design_id']);
 
-        return response()->json([
-            'status'=>200,
-            'project'=>$project,
-            'project_type'=>$project_type,
-            'states'=>$states,
-            'cities'=>$cities,
-            'designs'=>$designs
-        ]);
-    }
+    //     return response()->json([
+    //         'status'=>200,
+    //         'project'=>$project,
+    //         'project_type'=>$project_type,
+    //         'states'=>$states,
+    //         'cities'=>$cities,
+    //         'designs'=>$designs
+    //     ]);
+    // }
+
 }
