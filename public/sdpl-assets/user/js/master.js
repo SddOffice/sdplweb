@@ -214,6 +214,16 @@ function editBungalowEntrance(url) {
             $("input:radio[name='entrance_gate'][value='"+response.bungalow_entrance.entrance_gate+"']").prop("checked", true);
             $('#one_gate').val(response.bungalow_entrance.one_gate);
             $("input:radio[name='two_gate'][value='"+response.bungalow_entrance.two_gate+"']").prop("checked", true);
+            if(response.bungalow_entrance.entrance_gate == 2 ){//add by rohit
+                $('.entrance_two_gate_width').show();
+                if(response.bungalow_entrance.two_gate == 3)
+                {
+                    $('.entrance_two_gate_adjacent_mainsidecar_width').show();
+                }
+                else if(response.bungalow_entrance.two_gate == 4){
+                    $('.entrance_two_gate_different_customlocation_width').show();
+                }
+            }
             $('#main_car_gate').val(response.bungalow_entrance.main_car_gate);
             $('#side_padestrian_gate').val(response.bungalow_entrance.side_padestrian_gate);
             $('#different_customized_location').val(response.bungalow_entrance.different_customized_location);
@@ -226,7 +236,7 @@ function editBungalowEntrance(url) {
             $('#security_kiosq_length').val(response.bungalow_entrance.security_kiosq_length_feet);
             $('#security_kiosq_width').val(response.bungalow_entrance.security_kiosq_width_feet);
             $('#security_kiosq_area').val(response.bungalow_entrance.security_kiosq_area_feet);
-            $("input:radio[name='security_kiosq'][value='"+response.bungalow_entrance.security_kiosq+"']").prop("checked", true);
+            // $("input:radio[name='security_kiosq'][value='"+response.bungalow_entrance.security_kiosq+"']").prop("checked", true);
 
             //porch
             $("input:radio[name='porch_req'][value='"+response.bungalow_entrance.porch_req+"']").prop("checked", true);
@@ -285,8 +295,12 @@ function editBungalowDrawingHall(url) {
             // var living_hall_required = $('.living_hall_required').val();
             // $("input:radio[name='living_hall_required'][value= '"+ 1 +"']").prop("checked", true);
             // $("input:radio[name='living_hall_req'][value='"+response.bungalow_drawing_hall.living_hall_req+"']").prop("checked", true);
+            $("input:radio[name='living_hall_req'][value='"+response.bungalow_drawing_hall.living_hall_req+"']").prop("checked", true);
+            
+            reqNotReq(response.bungalow_drawing_hall.living_hall_req, "living_hall_body");
+            
 
-
+            $('#living_hall_location').val(response.bungalow_drawing_hall.living_hall_location);
             $('#living_hall_length').val(response.bungalow_drawing_hall.living_hall_length);
             $('#living_hall_width').val(response.bungalow_drawing_hall.living_hall_width);
             $('#living_hall_area').val(response.bungalow_drawing_hall.living_hall_area);
@@ -302,8 +316,9 @@ function editBungalowDrawingHall(url) {
             // var drawing_hall_required = $('.drawing_hall_required').val();
             // $("input:radio[name='drawing_hall_required'][value= '"+ 1 +"']").prop("checked", true);
             // $("input:radio[name='drawing_hall_req'][value='"+response.bungalow_drawing_hall.drawing_hall_req+"']").prop("checked", true);
-
-
+            reqNotReq(response.bungalow_drawing_hall.drawing_hall_req, "drawing_hall_body");
+            $("input:radio[name='drawing_hall_req'][value='"+response.bungalow_drawing_hall.drawing_hall_req+"']").prop("checked", true);
+            $('#drawing_hall_location').val(response.bungalow_drawing_hall.drawing_hall_location);
             $('#drawing_hall_length').val(response.bungalow_drawing_hall.drawing_hall_length);
             $('#drawing_hall_width').val(response.bungalow_drawing_hall.drawing_hall_width);
             $('#drawing_hall_area').val(response.bungalow_drawing_hall.drawing_hall_area);
@@ -326,6 +341,13 @@ function editBungalowDrawingHall(url) {
                     $('input[value="'+value+'"]').prop('checked',true);
                 }
             });
+
+            if($('.attached_store').prop('checked',true)){
+                $('.attached_store_input').show();
+            }
+            if($('.utility_washroom').prop('checked',true)){
+                $('.utility_washroom_input').show();
+            }
 
             // attached area 
             $('#attach_store_length').val(response.bungalow_drawing_hall.attach_store_length);
@@ -365,6 +387,8 @@ function editBungalowPantry(url) {
         if(response.status == 200){
             
             //pantry
+            $("input:radio[name='pantry_req'][value='"+response.bungalow_pantry.pantry_req+"']").prop("checked", true);
+            reqNotReq(response.bungalow_pantry.pantry_req, "pantry_body");
             $('#pantry_length').val(response.bungalow_pantry.pantry_length);
             $('#pantry_width').val(response.bungalow_pantry.pantry_width);
             $('#pantry_area').val(response.bungalow_pantry.pantry_area);
@@ -389,6 +413,9 @@ function editBungalowPantry(url) {
 
             // $('#project_id').val(response.bungalow_pantry.project_id);
             $('#updateModalBtn').attr('url',"update-bungalow-pantry");
+        }else{
+            $('#saveModalBtn').removeClass('hide');
+            $('#updateModalBtn').addClass('hide');
         }
     });
 }
@@ -433,6 +460,9 @@ function editBungalowFloorStore(url) {
             
             $('#project_id').val(response.bungalow_floor_store.project_id);
             $('#updateModalBtn').attr('url',"update-bungalow-floor-store");
+        }else{
+            $('#saveModalBtn').removeClass('hide');
+            $('#updateModalBtn').addClass('hide');
         }
     });
 }
@@ -493,6 +523,9 @@ function editBungalowBedroom(url) {
 
             // $('#project_id').val(response.bungalow_bedroom.project_id);
             $('#updateModalBtn').attr('url',"update-bungalow-bedroom");
+        }else{
+            $('#saveModalBtn').removeClass('hide');
+            $('#updateModalBtn').addClass('hide');
         }
     });
 }
@@ -560,6 +593,9 @@ function editBungalowBasement(url) {
             
             // $('#project_id').val(response.bungalow_basement.project_id);
             $('#updateModalBtn').attr('url',"update-bungalow-basement");
+        }else{
+            $('#saveModalBtn').removeClass('hide');
+            $('#updateModalBtn').addClass('hide');
         }
     });
 }

@@ -1577,9 +1577,9 @@
                             <div class="input-group">
                                 <select id="pantry_floor" name="pantry_floor" class="form-select form-select-sm">
                                     <option selected disabled>Select</option>
-                                    <option value="{{MyApp::G_FLOOR}}">G</option>
-                                    <option value="{{MyApp::G_1_FLOOR}}">G+1</option>
-                                    <option value="{{MyApp::G_2_FLOOR}}">G+2</option>
+                                    <option value="{{MyApp::G_FLOOR}}">Ground Floor </option>
+                                    <option value="{{MyApp::G_1_FLOOR}}">1st Floor </option>
+                                    <option value="{{MyApp::G_2_FLOOR}}">2nd Floor</option>
                                     <option value="{{MyApp::MORE_FLOOR}}">More</option>
                                 </select>  
                             </div> 
@@ -1716,9 +1716,9 @@
                             <div class="input-group">
                                 <select id="dining_floor" name="dining_floor" class="form-select form-select-sm">
                                     <option selected disabled>Select</option>
-                                    <option value="{{MyApp::G_FLOOR}}">G</option>
-                                    <option value="{{MyApp::G_1_FLOOR}}">G+1</option>
-                                    <option value="{{MyApp::G_2_FLOOR}}">G+2</option>
+                                    <option value="{{MyApp::G_FLOOR}}">Ground Floor </option>
+                                    <option value="{{MyApp::G_1_FLOOR}}">1st Floor </option>
+                                    <option value="{{MyApp::G_2_FLOOR}}">2nd Floor</option>
                                     <option value="{{MyApp::MORE_FLOOR}}">More</option>
                                 </select>  
                             </div> 
@@ -1748,11 +1748,12 @@
                             <div class="input-group">
                                 <select id="dining_seat" name="dining_seat" class="form-select form-select-sm">
                                     <option selected disabled>Select</option>
-                                    <option value="{{MyApp::SEAT_ONE}}">1</option>
-                                    <option value="{{MyApp::SEAT_TWO}}">2</option>
-                                    <option value="{{MyApp::SEAT_THREE}}">3</option>
-                                    <option value="{{MyApp::SEAT_FOUR}}">4</option>
-                                    <option value="{{MyApp::SEAT_OTHER}}">Other</option>
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                    <option value="8">8</option>
+                                    <option value="10">10</option>
+                                    <option value="12">12</option>
+                                    <option value="5">More</option>
                                 </select>  
                             </div> 
                         </div>
@@ -1837,6 +1838,37 @@
     <div class="card bg-light">
         {{-- <div class="card-header" style="padding: 2px;"><b>Pantry Details</b></div> --}}
         <div class="card-body">
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label class="form-check-label">Location</label>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="input-group">
+                                <select id="store_floor" name="store_floor" class="form-select form-select-sm">
+                                    <option selected disabled>Select</option>
+                                    <option value="{{MyApp::G_FLOOR}}">Ground Floor </option>
+                                    <option value="{{MyApp::G_1_FLOOR}}">1st Floor </option>
+                                    <option value="{{MyApp::G_2_FLOOR}}">2nd Floor</option>
+                                    <option value="{{MyApp::MORE_FLOOR}}">More</option>
+                                </select>  
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 store_floor_specific hide">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control gradiantclass" name="floor_store_other_text" id="floor_store_other_text" placeholder="floor store location">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="row">
@@ -1875,38 +1907,6 @@
                     <div class="input-group mb-1">
                         <input type="text" class="form-control gradiantclass" name="floor_store_area" id="floor_store_area" placeholder="floor store area" readonly>
                         <span class="input-group-text another"></span> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mt-2">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label class="form-check-label">Location</label>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="input-group">
-                                <select id="store_floor" name="store_floor" class="form-select form-select-sm">
-                                    <option selected disabled>Select</option>
-                                    <option value="{{MyApp::G_FLOOR}}">G</option>
-                                    <option value="{{MyApp::G_1_FLOOR}}">G+1</option>
-                                    <option value="{{MyApp::G_2_FLOOR}}">G+2</option>
-                                    <option value="{{MyApp::MORE_FLOOR}}">More</option>
-                                </select>  
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 store_floor_specific hide">
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <div class="input-group">
-                                <input type="text" class="form-control gradiantclass" name="floor_store_other_text" id="floor_store_other_text" placeholder="floor store location">
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2082,9 +2082,9 @@
                             <div class="input-group">
                                 <select id="pooja_room_floor" name="pooja_room_floor" class="form-select form-select-sm">
                                     <option selected disabled>Select</option>
-                                    <option value="{{MyApp::G_FLOOR}}">G</option>
-                                    <option value="{{MyApp::G_1_FLOOR}}">G+1</option>
-                                    <option value="{{MyApp::G_2_FLOOR}}">G+2</option>
+                                    <option value="{{MyApp::G_FLOOR}}">Ground Floor </option>
+                                    <option value="{{MyApp::G_1_FLOOR}}">1st Floor </option>
+                                    <option value="{{MyApp::G_2_FLOOR}}">2nd Floor</option>
                                     <option value="{{MyApp::MORE_FLOOR}}">More</option>
                                 </select>  
                             </div> 
